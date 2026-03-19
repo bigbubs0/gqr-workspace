@@ -74,7 +74,10 @@
       "Bash(cp /c/Users/BryanBlair/.claude/skills/eod-sweep/SKILL.md /c/Users/BryanBlair/.claude/skill-improvement/backups/eod-sweep.SKILL.md.bak)",
       "Bash(cp /c/Users/BryanBlair/.claude/skills/sentence-editor/SKILL.md /c/Users/BryanBlair/.claude/skill-improvement/backups/sentence-editor.SKILL.md.bak)",
       "Bash(cp /c/Users/BryanBlair/.claude/scheduled-tasks/obsidian-daily-maintenance/SKILL.md /c/Users/BryanBlair/.claude/skill-improvement/backups/obsidian-daily-maintenance.SKILL.md.bak)",
-      "Bash(cp /c/Users/BryanBlair/.claude/scheduled-tasks/obsidian-weekly-audit/SKILL.md /c/Users/BryanBlair/.claude/skill-improvement/backups/obsidian-weekly-audit.SKILL.md.bak)"
+      "Bash(cp /c/Users/BryanBlair/.claude/scheduled-tasks/obsidian-weekly-audit/SKILL.md /c/Users/BryanBlair/.claude/skill-improvement/backups/obsidian-weekly-audit.SKILL.md.bak)",
+      "Bash(python3 \"/c/Users/BryanBlair/OneDrive - GQR Global Markets/Documents/create_metrics.py\")",
+      "Bash(GIT_INDEX_FILE=\".git/index\" git add Documents/placement-metrics.xlsx CLAUDE.md .claude/settings.local.json)",
+      "Bash(echo \"exit: $?\")"
     ],
     "deny": [],
     "ask": []

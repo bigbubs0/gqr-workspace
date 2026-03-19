@@ -1,0 +1,27 @@
+node_modules/
+desktop.ini
+.849C9593-D756-4E56-8D6E-42412F2A707B
+*.lnk
+.claude/plans/
+.claude/Apartment Documents/
+.claude/Biotech News/
+.claude/CVs/
+.claude/Downloads - Copy/
+.claude/In Basket/
+
+# Large binary files
+SigmaOS.dmg
+*.msi
+*.zip
+*.mp4
+
+# Large directories (kept locally, too big for GitHub)
+Pictures/
+Knowledge Base/*.pdf
+Knowledge Base/**/*.pdf
+Knowledge Base/*.json
+Microsoft Teams Chat Files/
+OneDrive - Green Key Resources/
+Documents/Workout Logs/
+.playwright-cli/
+.playwright-mcp/

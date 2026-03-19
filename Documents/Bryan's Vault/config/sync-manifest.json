@@ -1,0 +1,125 @@
+{
+  "manifest_version": "1.0",
+  "updated_at": "2026-03-08T06:00:00Z",
+  "owner": "Bryan Blair",
+  "audit": {
+    "cadence": "weekly",
+    "run_day": "monday",
+    "timezone": "America/New_York",
+    "scoring": {
+      "green": "All checks pass within SLA windows.",
+      "red": "Any required check fails or has stale/unknown success evidence."
+    }
+  },
+  "services": [
+    {
+      "service": "make_scenario_4162531",
+      "name": "CV Intake Pipeline v2",
+      "type": "make.com_scenario",
+      "expected_cadence": "event_driven",
+      "health_rules": {
+        "min_success_runs_last_7_days": 1,
+        "max_hours_since_last_success": 168,
+        "required_configuration": [
+          "router_create_filter_duplicate_count_eq_0",
+          "router_update_filter_duplicate_count_gt_0"
+        ],
+        "openai_tier_minimum_tpm": 60000,
+        "openai_tier_check_note": "Tier 1 (30K TPM) insufficient for large CVs. Tier 2+ (450K TPM) required.",
+        "openai_context_window_max_tokens": 128000,
+        "file_size_filter_required": true,
+        "file_size_filter_note": "Files exceeding ~100K tokens must be rejected or chunked. GPT-4o hard limit is 128K tokens. One queued CV was 138K tokens - unfixable via tier upgrade."
+      },
+      "evidence_fields": [
+        "last_success_at",
+        "success_runs_last_7_days",
+        "router_filters_verified",
+        "last_error",
+        "openai_tier"
+      ]
+    },
+    {
+      "service": "apps_script_cv_auto_sort",
+      "name": "CV Auto-Sort",
+      "type": "google_apps_script_trigger",
+      "expected_cadence": "every_15_minutes",
+      "deployment_status": "active",
+      "verified_at": "2026-03-07",
+      "trigger_installed_at": "2026-03-07",
+      "apps_script_project": "Inbox to Candidate Linker",
+      "mimetype_fix_applied": "2026-03-07",
+      "mimetype_fix_deployed": "2026-03-08",
+      "health_rules": {
+        "max_minutes_since_last_success": 30,
+        "trigger_must_be_enabled": true
+      },
+      "evidence_fields": [
+        "trigger_enabled",
+        "last_success_at",
+        "last_error"
+      ]
+    },
+    {
+      "service": "apps_script_index_updater",
+      "name": "Index Updater",
+      "type": "google_apps_script_trigger",
+      "expected_cadence": "daily_02_00",
+      "deployment_status": "active",
+      "verified_at": "2026-03-07",
+      "trigger_installed_at": "2026-03-07",
+      "apps_script_project": "phase6_step5_auto_archive",
+      "health_rules": {
+        "max_hours_since_last_success": 30,
+        "trigger_must_be_enabled": true
+      },
+      "evidence_fields": [
+        "trigger_enabled",
+        "last_success_at",
+        "last_error"
+      ]
+    },
+    {
+      "service": "apps_script_weekly_auto_archive",
+      "name": "Weekly Auto-Archive",
+      "type": "google_apps_script_trigger",
+      "expected_cadence": "weekly_sunday_03_00",
+      "deployment_status": "active",
+      "verified_at": "2026-03-07",
+      "trigger_installed_at": "2026-03-07",
+      "local_script": "scripts/weekly-auto-archive.gs",
+      "apps_script_project": "Weekly Auto-Archive",
+      "health_rules": {
+        "max_days_since_last_success": 8,
+        "trigger_must_be_enabled": true
+      },
+      "evidence_fields": [
+        "trigger_enabled",
+        "last_success_at",
+        "last_error"
+      ]
+    }
+  ],
+  "end_to_end_test": {
+    "name": "intake_cv_chain",
+    "required_sequence": [
+      "cv_dropped_in_intake_folder",
+      "apps_script_sorted_cv",
+      "make_webhook_received",
+      "gpt4o_parse_success",
+      "notion_candidate_created_or_updated"
+    ],
+    "pass_condition": "All sequence checkpoints confirmed in same test window.",
+    "last_test": {
+      "date": "2026-03-08",
+      "result": "PARTIAL",
+      "checkpoints": {
+        "cv_dropped_in_intake_folder": "PASS - Baodong_Xing_CV (Google Doc) in 00_INBOX",
+        "apps_script_sorted_cv": "PASS - File moved to 01_CANDIDATES by mimeType-aware script",
+        "make_webhook_received": "PASS - Two executions triggered (00:18, 02:03 UTC)",
+        "gpt4o_parse_success": "FAIL - Execution stops at 3 ops. GPT-4o either filtered or returned empty output. Module-level detail needed from Make.com UI.",
+        "notion_candidate_created_or_updated": "FAIL - No Baodong Xing record in Notion. No CV Processing Log entries."
+      },
+      "blocker": "Make.com pipeline produces 3-op SUCCESS instead of 18-op full chain for Google Doc CVs. Root cause: Module 3 filter or GPT-4o output behavior with text/plain export of Google Docs."
+    }
+  }
+}

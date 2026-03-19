@@ -1,0 +1,24 @@
+ 2025-09-24 17:06:08.823777, AppStateController: appState type: AppActionType.INITIALIZING currentState: ApplicationLifeState.WAIT_FOR_REFRESH_TOKEN nextState: ApplicationLifeState.APP_INITIALIZED
+ ApiSerivce.cr 2025-09-24 17:06:08.867310, WebSocket server running on 0.0.0.0:8002
+T_FOR_REFRESH_TOKEN  
+ 2025-09-24 17:06:08.871666, AppStateController: appState type: AppActionType.HAS_INVALID_REFRESH_TOKEN currentState: ApplicationLifeState.WAIT_FOR_ID_LOGIN nextState: ApplicationLifeState.WAIT_FOR_ID_LOGIN
+ 2025-09-24 17:06:09.620560, Connectivity State ethernet
+ 2025-09-24 17:06:09.786473, Main: Current directory: Directory: 'C:\Program Files\CloudCall'
+ 2025-09-24 17:06:09.789473, Root: Processing currentPath now /login
+S
+ 2025-09-24 17:06:09.807667, Main:  screen size: 1920.0, 1032.0, 1032.0
+ 2025-09-24 17:06:14.021182, Login login
+feState.LOGGING_IN_TO_ID_SERVER
+pe.LOGGING_IN_TO_ID_SERVER currentState: ApplicationLifeState.LOGGING_IN_TO_ID_SERVER nextState: ApplicationLifeState.LOGGING_IN_TO_ID_SERVER
+ 2025-09-24 17:06:14.324829, login() oiClient
+ 2025-09-24 17:06:14.325812, OpenIDController: await authenticator.authorize();
+ 2025-09-24 17:07:07.183596, AppController: onAppTransitionCallBack CANCEL_LOGIN stopwatch  ElapsedTimeMs:  58359 
+ 2025-09-24 17:07:07.183596, AppController: onAppTransitionCallBack WAIT_FOR_ID_LOGIN stopwatch  ElapsedTimeMs:  58360 
+tate.WAIT_FOR_ID_LOGIN nextState: ApplicationLifeState.CANCEL_LOGIN
+ID_LOGIN
+ 2025-09-24 17:11:28.825952, SIPController: timer hasRegistrationExpired() false
+ 2025-09-24 17:16:48.824874, SIPController: timer hasRegistrationExpired() false
+ 2025-09-24 17:22:08.825562, SIPController: timer hasRegistrationExpired() false
+ 2025-09-24 17:27:28.825533, SIPController: timer hasRegistrationExpired() false
+ 2025-09-24 17:32:48.824760, SIPController: timer hasRegistrationExpired() false
+ 2025-09-24 17:38:08.824397, SIPController: timer hasRegistrationExpired() false

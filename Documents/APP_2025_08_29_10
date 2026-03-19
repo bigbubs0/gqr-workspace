@@ -1,0 +1,143 @@
+ 2025-08-29 10:53:08.757688, Main: main
+ 2025-08-29 10:53:08.759695, AppStateMachine.create: Instance null true
+ 2025-08-29 10:53:08.759695, OpenIDController.create()
+ 2025-08-29 10:53:08.760695, ApiSerivce.create()
+ 2025-08-29 10:53:08.763975, WebSocket server running on 0.0.0.0:8002
+_INITIALIZED  
+RESH_TOKEN currentState: ApplicationLifeState.WAIT_FOR_REFRESH_TOKEN nextState: ApplicationLifeState.WAIT_FOR_REFRESH_TOKEN
+ 2025-08-29 10:53:08.765981, AppController: onAppTransitionCallBack WAIT_FOR_ID_LOGIN stopwatch  ElapsedTimeMs:  5 
+ ApplicationLifeState.WAIT_FOR_ID_LOGIN nextState: ApplicationLifeState.WAIT_FOR_ID_LOGIN
+ 2025-08-29 10:53:09.192991, Connectivity State wifi
+ 2025-08-29 10:53:09.276751, Main: Current directory: Directory: 'C:\Program Files\CloudCall'
+ 2025-08-29 10:53:09.280248, Root: Processing currentPath now /login
+0
+ 2025-08-29 10:53:12.673596, Login login
+ 2025-08-29 10:53:12.673596, AppController: onAppTransitionCallBack LOGGING_IN_TO_ID_SERVER stopwatch  ElapsedTimeMs:  3912 
+nLifeState.LOGGING_IN_TO_ID_SERVER nextState: ApplicationLifeState.LOGGING_IN_TO_ID_SERVER
+ 2025-08-29 10:53:12.892502, login() oiClient
+ 2025-08-29 10:53:12.941706, OpenIDController: await authenticator.authorize();
+ 2025-08-29 10:58:28.762039, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 11:03:48.772130, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 11:07:23.854412, Awaiting screen WAIT_FOR_ID_LOGIN
+ack CANCEL_LOGIN stopwatch  ElapsedTimeMs:  855092 
+ifeState.WAIT_FOR_ID_LOGIN nextState: ApplicationLifeState.CANCEL_LOGIN
+ID_LOGIN
+ 2025-08-29 11:09:08.767418, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 11:14:28.762579, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 11:19:48.761602, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 11:25:08.762490, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 11:30:28.762185, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 11:35:48.761840, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 11:41:08.761564, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 11:46:28.761620, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 11:51:48.761519, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 11:57:08.762099, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 12:02:28.761620, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 12:07:48.762073, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 12:13:08.761926, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 12:18:28.761464, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 12:23:48.762198, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 12:29:08.762047, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 12:34:28.761909, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 12:39:48.762449, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 12:45:08.762031, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 12:50:28.761723, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 12:55:48.762370, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:01:08.762873, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:06:28.762494, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:11:48.761315, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:17:08.761663, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:22:28.762054, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:27:48.761612, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:33:08.761967, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:38:28.763077, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:43:48.761527, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:49:08.761881, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:54:28.761706, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 13:59:48.761521, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 14:05:08.761833, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 14:10:28.762400, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 14:15:48.761906, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 14:21:08.761167, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 14:26:28.762190, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 14:31:48.761704, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 14:37:08.761975, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 14:42:28.761704, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 14:47:48.762315, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 14:53:08.761693, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 14:58:28.765518, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 15:03:48.765853, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 15:09:08.763662, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 15:14:28.761560, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 15:19:48.765437, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 15:25:08.763056, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 15:30:28.763624, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 15:35:48.761223, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 15:41:08.763407, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 15:46:28.762063, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 15:51:48.761856, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 15:57:08.761481, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 16:02:28.764476, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 16:07:48.762066, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 16:13:08.761444, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 16:18:28.761926, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 16:23:48.761543, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 16:29:08.761772, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 16:34:28.762765, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 16:39:48.761740, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 16:45:08.764675, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 16:50:28.762295, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 16:55:48.761995, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:01:08.762770, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:06:28.762162, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:11:48.762168, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:17:08.761275, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:22:28.762503, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:27:48.761825, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:33:08.761972, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:38:28.762544, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:43:48.762533, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:49:08.762662, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:54:28.761930, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 17:59:48.761729, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 18:05:08.762278, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 18:10:28.761986, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 18:15:48.761930, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 18:21:08.761495, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 18:26:28.761494, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 18:31:48.762950, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 18:37:08.762657, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 18:42:28.762158, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 18:47:48.762240, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 18:53:08.772762, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 18:58:28.761429, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 19:03:48.762861, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 19:09:08.761351, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 19:14:28.762298, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 19:19:48.762210, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 19:25:08.762237, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 19:30:28.761716, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 19:35:48.761308, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 19:41:08.761821, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 19:46:28.761610, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 19:51:48.761654, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 19:57:08.762896, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 20:02:28.762506, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 20:07:48.762058, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 20:13:08.762023, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 20:18:28.762359, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 20:23:48.775986, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 20:29:08.762387, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 20:34:28.761238, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 20:39:48.762499, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 20:45:08.761291, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 20:50:28.761909, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 20:55:48.761287, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 21:01:08.761995, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 21:06:28.762276, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 21:11:48.762206, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 21:17:08.762277, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 21:22:28.761343, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 21:27:48.762827, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 21:33:08.761838, SIPController: timer hasRegistrationExpired() false
+ 2025-08-29 21:38:28.762478, SIPController: timer hasRegistrationExpired() false

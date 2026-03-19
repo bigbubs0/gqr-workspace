@@ -1,0 +1,126 @@
+ 2025-09-30 08:35:16.428822, AppStateController: appState type: AppActionType.CHECK_REFRESH_TOKEN currentState: ApplicationLifeState.WAIT_FOR_REFRESH_TOKEN nextState: ApplicationLifeState.WAIT_FOR_REFRESH_TOK 2025-09-30 08:35:16.428822, AppController: onAppTransitionCallBack WAIT_FOR_REFRESH_TOKEN  
+ 2025-09-30 08:35:16.429818, AppStateController: appState type: AppActionType.INITIALIZING currentState: ApplicationLifeState.WAIT_FOR_REFRESH_TOKEN nextState: ApplicationLifeState.APP_INITIALIZED
+ 2025-09-30 08:35:16.517970, Connectivity State ethernet
+ 2025-09-30 08:35:16.655410, Main: Current directory: Directory: 'C:\Program Files\CloudCall'
+ 2025-09-30 08:35:16.660553, Root: Processing currentPath now /login
+S
+ 2025-09-30 08:35:16.694993, Main:  screen size: 1920.0, 1032.0, 1032.0
+ 2025-09-30 08:35:20.337203, ApplicationLifeState.LOGGING_IN_TO_ID_SERVER
+pe.LOGGING_IN_TO_ID_SERVER currentState: ApplicationLifeState.LOGGING_IN_TO_ID_SERVER nextState: ApplicationLifeState.LOGGING_IN_TO_ID_SERVER
+ 2025-09-30 08:35:20.568246, login() oiClient
+ 2025-09-30 08:35:20.569255, OpenIDController: await authenticator.authorize();
+ 2025-09-30 08:39:15.151395, AppController: onAppTransitionCallBack CANCEL_LOGIN stopwatch  ElapsedTimeMs:  238722 
+tionLifeState.WAIT_FOR_ID_LOGIN nextState: ApplicationLifeState.WAIT_FOR_ID_LOGIN
+ 2025-09-30 08:39:20.317546, AppStateController: appState type: AppActionType.LOGGING_IN_TO_ID_SERVER currentState: ApplicationLifeState.LOGGING_IN_TO_ID_SERVER nextState: ApplicationLifeState.LOGGING_IN_TO_ID_SERVER
+ 2025-09-30 08:39:39.221982, AppController: onAppTransitionCallBack WAIT_FOR_ID_LOGIN stopwatch  ElapsedTimeMs:  262793 
+ 2025-09-30 08:39:39.221982, Awaiting screen CANCEL_LOGIN
+GIN
+AppActionType.WAIT_FOR_ID_LOGIN currentState: ApplicationLifeState.WAIT_FOR_ID_LOGIN nextState: ApplicationLifeState.WAIT_FOR_ID_LOGIN
+ 2025-09-30 08:39:39.221982, AppStateController: appState type: AppActionType.CANCEL_LOGIN currentState: ApplicationLifeState.WAIT_FOR_ID_LOGIN nextState: ApplicationLifeState.CANCEL_LOGIN
+ 2025-09-30 08:40:36.429033, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 08:45:56.430274, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 08:51:16.429816, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 08:56:36.429232, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 09:01:56.429129, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 09:07:16.429636, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 09:12:36.429386, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 09:17:56.429444, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 09:23:16.428542, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 09:28:36.429679, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 09:33:56.429816, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 09:39:16.429100, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 09:44:36.429227, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 09:49:56.429116, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 09:55:16.430142, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 10:00:36.429456, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 10:05:56.429284, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 10:11:16.429541, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 10:16:36.430220, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 10:21:56.429552, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 10:31:19.163603, Connectivity State ethernet
+ 2025-09-30 10:31:47.145176, Connectivity State ethernet
+ 2025-09-30 10:33:12.621882, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 10:37:56.429281, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 10:43:16.428456, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 10:48:36.429838, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 10:53:56.429662, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 10:59:16.429434, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 11:04:36.429969, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 11:09:56.429088, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 11:15:16.429739, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 11:20:36.429712, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 11:25:56.430003, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 11:31:16.429634, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 11:36:36.429830, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 11:41:56.428694, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 11:47:16.429549, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 11:52:36.429802, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 11:57:56.429692, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 12:03:16.429454, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 12:08:36.428526, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 12:52:59.169154, Connectivity State ethernet
+ 2025-09-30 12:53:06.405162, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 12:53:25.520504, Connectivity State ethernet
+ 2025-09-30 12:56:36.429814, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 13:01:56.489893, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 13:07:16.429263, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 13:12:36.429631, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 13:17:56.429723, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 13:23:16.429590, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 13:28:36.429611, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 13:33:56.429789, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 13:39:16.428888, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 13:44:36.429668, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 13:49:56.432094, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 13:55:16.428674, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 14:00:36.429933, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 14:05:56.429541, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 14:11:16.429345, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 14:16:36.429284, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 14:21:56.430184, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 14:27:16.430114, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 14:32:36.430324, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 14:37:56.429210, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 14:43:16.429763, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 14:48:36.430094, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 14:53:56.429613, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 15:04:38.821227, Connectivity State ethernet
+ 2025-09-30 15:05:01.145163, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 15:05:06.850333, Connectivity State ethernet
+ 2025-09-30 15:09:56.429849, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 15:15:16.429092, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 15:20:36.429684, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 15:25:56.431319, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 15:31:16.428878, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 15:36:36.429480, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 15:41:56.429025, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 15:47:16.452359, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 15:52:36.429779, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 15:57:56.429327, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 16:03:16.429412, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 16:08:36.428705, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 16:13:56.429752, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 16:19:16.429899, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 16:24:36.428931, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 16:29:56.428924, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 16:35:16.429355, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 16:50:05.919363, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 16:50:06.267850, Connectivity State ethernet
+ 2025-09-30 16:51:01.992290, Connectivity State ethernet
+ 2025-09-30 16:51:16.429905, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 16:56:36.430185, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 17:01:56.429497, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 17:07:16.429315, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 17:12:36.429831, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 17:18:12.989358, Connectivity State ethernet
+ 2025-09-30 17:18:35.547082, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 17:18:41.155904, Connectivity State ethernet
+ 2025-09-30 17:23:16.429733, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 17:28:36.429842, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 17:33:56.429192, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 17:39:16.429795, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 17:44:36.429275, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 17:49:56.428665, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 17:55:16.429703, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 18:00:36.382853, SIPController: timer hasRegistrationExpired() false
+ 2025-09-30 18:05:56.329175, SIPController: timer hasRegistrationExpired() false

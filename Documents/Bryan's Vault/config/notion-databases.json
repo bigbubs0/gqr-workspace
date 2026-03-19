@@ -1,0 +1,103 @@
+{
+  "updated_at": "2026-03-13",
+  "owner": "Bryan Blair",
+  "workspace": "Bryan's Vault",
+  "status": "partial_restore",
+  "notes": [
+    "Recovered from local planning docs on 2026-03-07.",
+    "Job Alerts is the only source still missing a verified data source ID.",
+    "US-only Job Alerts rollout is in blocker mode until Job Alerts ID, schema, and live access are verified.",
+    "Catalyst Calendar was created live in Notion on 2026-03-13 and mapped for Monday Catalyst Board."
+  ],
+  "databases": {
+    "company_core": {
+      "name": "Company Core",
+      "data_source_id": "collection://f371c4ed-be14-468e-a197-822154951845",
+      "status": "verified_from_local_docs",
+      "used_by": [
+        "morning_signal_radar",
+        "urgent_account_alert",
+        "opportunity_matcher",
+        "monday_market_board"
+      ]
+    },
+    "funding_5_50m": {
+      "name": "Funding 5-50M",
+      "data_source_id": "collection://9490e7cc-0504-4412-85ad-32b2ad7e906e",
+      "status": "verified_from_local_docs",
+      "used_by": [
+        "morning_signal_radar",
+        "urgent_account_alert",
+        "monday_market_board"
+      ]
+    },
+    "funding_megaround": {
+      "name": "Funding Megaround",
+      "data_source_id": "collection://927267bf-ec5b-4b20-9829-2b9d6371ba23",
+      "status": "verified_from_local_docs",
+      "used_by": [
+        "morning_signal_radar",
+        "urgent_account_alert",
+        "monday_market_board"
+      ]
+    },
+    "layoffs": {
+      "name": "Layoffs",
+      "data_source_id": "collection://21cf7674-0da8-4812-8708-04b65a252cac",
+      "status": "verified_from_local_docs",
+      "used_by": [
+        "morning_signal_radar",
+        "urgent_account_alert",
+        "monday_market_board"
+      ]
+    },
+    "positive_data": {
+      "name": "Positive Data",
+      "data_source_id": "collection://c5a4112f-cd39-479f-a90f-3165a1ec7a60",
+      "status": "verified_from_local_docs",
+      "used_by": [
+        "morning_signal_radar",
+        "urgent_account_alert",
+        "monday_market_board"
+      ]
+    },
+    "active_searches": {
+      "name": "Active Searches",
+      "data_source_id": "collection://a9ad56d9-0459-44c3-a914-5bfeaa8617bf",
+      "status": "verified_from_local_docs",
+      "used_by": [
+        "opportunity_matcher",
+        "monday_market_board"
+      ]
+    },
+    "candidates": {
+      "name": "Candidates",
+      "data_source_id": "collection://3841a478-62d3-4e5d-8265-d429375bd314",
+      "status": "verified_from_local_docs",
+      "used_by": [
+        "opportunity_matcher",
+        "monday_market_board"
+      ]
+    },
+    "catalyst_calendar": {
+      "name": "Catalyst Calendar",
+      "data_source_id": "collection://32274761-3c9a-80c2-8882-000b7434d628",
+      "status": "verified_live_2026_03_13",
+      "used_by": [
+        "monday_catalyst_board"
+      ],
+      "notes": "Created live in Notion on 2026-03-13 at page https://www.notion.so/322747613c9a8044b95aea3119a4a31d?v=322747613c9a8059ab44000c914b9790 with relation to Company Core. Required properties: Name, Company, Company Name, Bucket, Expected Date, Expected Date Raw, Type, Category Family, Event Title, Drug, Indication, Priority, Source URL, Source System, Verification Status, Dedupe Key, First Seen, Last Seen, Status."
+    },
+    "job_alerts": {
+      "name": "Job Alerts",
+      "data_source_id": null,
+      "status": "pending_verification",
+      "used_by": [
+        "morning_signal_radar",
+        "urgent_account_alert",
+        "monday_market_board"
+      ],
+      "notes": "Keep automations in blocker mode for Notion job alerts until this ID is restored. Do not write non-US or ambiguous roles. Do not update Jobs Last Checked until live access and schema verification are complete."
+    }
+  }
+}

@@ -66,6 +66,20 @@ If the role requires 3+ days onsite per week, the InMail must mention this. PV p
 
 Do NOT bury location at the end or omit it entirely. Do NOT soften it ("flexible hybrid" when the JD says 4 days). State it factually and move on. Candidates who self-select out on location save Bryan a screening call.
 
+### Rule 9: Output Formatting and CTA Construction
+
+**No em dashes anywhere in output.** Use a colon as the separator in Boolean angle labels and template section headers.
+
+Correct: `CORE MATCH: Sponsor-side clinical outsourcing leaders with Phase II/III depth`
+Wrong: `CORE MATCH — Sponsor-side clinical outsourcing leaders with Phase II/III depth`
+
+**CTA sentences must end on a high-weight word.** The final word of the call-to-action is what the reader retains. Never end a CTA on "it," "week," "you," "there," or "out." End on the role descriptor, the experience term, or the outcome.
+
+Correct: "Worth 15 minutes if you have Phase II/III outsourcing experience."
+Correct: "Happy to share the full brief if you're open to a call."
+Wrong: "Your CV and 15 minutes would be worth it."
+Wrong: "Open to a brief call this week?"
+
 ---
 
 ## Input

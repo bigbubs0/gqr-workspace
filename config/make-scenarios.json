@@ -1,0 +1,67 @@
+{
+  "_description": "Make.com scenario IDs and webhook URLs for Bryan Blair's automation infrastructure.",
+  "_updated": "2026-03-21",
+  "_status": "Partially populated. Many scenarios are spec'd but not yet built.",
+
+  "scenarios": {
+    "router_filter_patch": {
+      "scenario_id": "4162531",
+      "status": "active",
+      "description": "Router filter patch for Notion candidate mapping. Fixed via API blueprint update."
+    },
+    "eod_inbox_scan": {
+      "scenario_id": null,
+      "status": "not_built",
+      "description": "EOD sweep: Graph API pulls Outlook inbox/sent at 5:30 PM ET, formats markdown, pushes to Notion EOD Scan Output page + Google Drive.",
+      "spec_location": "Notion: Automation Specs page (2e974761-3c9a-8136-b05f-cd75b116dba6)",
+      "blocker": "Microsoft 365 OAuth not yet authorized in Make.com"
+    },
+    "ai_inbox_classifier": {
+      "scenario_id": null,
+      "status": "not_built",
+      "description": "Watches Inbox - Quick Capture for Status=New items, classifies via Claude API, routes to correct destination.",
+      "spec_location": "Notion: Automation Specs page"
+    },
+    "weekly_staleness_sweep": {
+      "scenario_id": null,
+      "status": "not_built",
+      "description": "Sunday 6 AM: archives stale inbox items, sends email summary.",
+      "spec_location": "Notion: Automation Specs page"
+    },
+    "funding_signal_5_50m": {
+      "scenario_id": null,
+      "status": "not_built",
+      "description": "Daily 6 AM: Perplexity API query for $5-50M biotech funding, pushes to Notion.",
+      "spec_location": "Notion: Perplexity + Make.com Automation Setup page"
+    },
+    "funding_signal_megaround": {
+      "scenario_id": null,
+      "status": "not_built",
+      "description": "Daily 6 AM: Perplexity API query for $50M+ rounds, pushes to Notion."
+    },
+    "layoffs_signal": {
+      "scenario_id": null,
+      "status": "not_built",
+      "description": "Daily 6 AM: Perplexity API query for biotech layoffs/restructuring."
+    },
+    "positive_data_signal": {
+      "scenario_id": null,
+      "status": "not_built",
+      "description": "Daily 6 AM: Perplexity API query for positive clinical data readouts."
+    },
+    "decision_log": {
+      "scenario_id": null,
+      "status": "not_built",
+      "description": "Watches meeting notes, extracts decisions via Claude API, creates Decision Log entries.",
+      "spec_location": "Notion: Decision Log Automation Setup Guide"
+    },
+    "voice_dump_intake": {
+      "scenario_id": null,
+      "status": "not_built",
+      "description": "Webhook receives voice note transcriptions, parses and routes to Notion databases.",
+      "blocker": "Depends on program.md + EOD sweep being stable first (priority #3)"
+    }
+  },
+
+  "webhooks": {}
+}

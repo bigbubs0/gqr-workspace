@@ -1,0 +1,86 @@
+{
+  "_description": "Notion database IDs for Bryan Blair's recruiting intelligence infrastructure. Collection IDs are the data source identifiers used by Notion MCP for queries.",
+  "_updated": "2026-03-21",
+  
+  "databases": {
+    "company_core": {
+      "page_id": "9e8c123a-23b8-4b1d-9be0-d759b897b61a",
+      "collection_id": "f371c4ed-be14-468e-a197-822154951845",
+      "name": "Company Core",
+      "description": "Central node of hub-and-spoke architecture. All companies tracked."
+    },
+    "active_searches": {
+      "page_id": "a683c60b-a9d2-4791-808b-6551a3caaaf1",
+      "collection_id": "a9ad56d9-0459-44c3-a914-5bfeaa8617bf",
+      "name": "Active Searches",
+      "description": "All open roles across owned and team accounts."
+    },
+    "candidates": {
+      "page_id": "c88d8909-e7c5-427a-a427-e53f2f267777",
+      "collection_id": "3841a478-62d3-4e5d-8265-d429375bd314",
+      "name": "Candidates",
+      "description": "All candidate records with status tracking."
+    },
+    "positive_data": {
+      "page_id": "5ca32802-f25e-449d-9be7-2111ac26642a",
+      "collection_id": "c5a4112f-cd39-479f-a90f-3165a1ec7a60",
+      "name": "Positive Data & Milestones",
+      "description": "Clinical data readouts, FDA actions, regulatory milestones."
+    },
+    "funding_5_50m": {
+      "collection_id": "9490e7cc-0504-4412-85ad-32b2ad7e906e",
+      "name": "5-50M Funding Tracker",
+      "description": "Series A/B funding rounds $5M-$50M."
+    },
+    "funding_megaround": {
+      "collection_id": "927267bf-ec5b-4b20-9829-2b9d6371ba23",
+      "name": "Megaround Funding Tracker",
+      "description": "Series C+ rounds, IPOs, PIPEs >= $50M."
+    },
+    "layoffs": {
+      "collection_id": "21cf7674-0da8-4812-8708-04b65a252cac",
+      "name": "Layoffs & Restructuring",
+      "description": "Workforce reductions, restructuring events."
+    },
+    "job_alerts": {
+      "page_id": "8dde31b1-f3bc-4c5e-a0ed-d6ea015728ba",
+      "collection_id": "e83b1888-f65a-486d-bc1f-c0071623f9af",
+      "name": "Job Alerts",
+      "description": "Tracked job postings from Company Core careers pages. Data source ID needs verification."
+    },
+    "placements": {
+      "collection_id": "24474761-3c9a-811d-90cb-000b4d01d7bc",
+      "name": "Placements",
+      "description": "Completed placements tracking."
+    },
+    "talent_pool": {
+      "collection_id": "4fbef74e-0791-42e8-87b1-e9a1d68aea2e",
+      "name": "Talent Pool",
+      "description": "Candidates linked to Company Core for relationship tracking."
+    },
+    "inbox_quick_capture": {
+      "page_id": "9f14f394-bc0b-40bf-beef-d05888930910",
+      "name": "Inbox - Quick Capture",
+      "description": "ADHD-optimized inbox for raw capture."
+    },
+    "archived_candidates": {
+      "page_id": "2e974761-3c9a-8178-8011-d4078e767e95",
+      "name": "Archived Candidates",
+      "description": "Auto-archive destination for declined/inactive candidates."
+    },
+    "dormant_companies": {
+      "page_id": "2e974761-3c9a-8180-a826-cb05384dd319",
+      "name": "Dormant Companies",
+      "description": "Companies with no recent activity."
+    }
+  },
+
+  "key_pages": {
+    "eod_scan_output": "32974761-3c9a-811a-99c5-ea095703d924",
+    "agent_context": "31574761-3c9a-8173-a7f0-dc2a12f27304",
+    "active_pipeline_snapshot": "125f675e-918b-453f-9c68-b271365cad26",
+    "daily_command_center": "2de74761-3c9a-8181-9b76-e658b009b893",
+    "automation_specs": "2e974761-3c9a-8136-b05f-cd75b116dba6",
+    "perplexity_make_setup": "2e074761-3c9a-8102-a753-dfb2573b70a4"
+  }
+}

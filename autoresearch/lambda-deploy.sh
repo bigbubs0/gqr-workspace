@@ -1,7 +1,7 @@
 #!/bin/bash
 # ============================================
-# LAMBDA DEPLOY SCRIPT - Paste this entire block
-# into your SSH session on the Lambda instance
+# LAMBDA DEPLOY - Paste into your SSH session
+# Uses Claude Max subscription, no API key needed
 # ============================================
 
 echo "============================================"
@@ -13,21 +13,27 @@ cd ~
 git clone https://github.com/bigbubs0/gqr-workspace.git
 cd gqr-workspace/autoresearch
 
-# Step 2: Install Python dependencies
-pip install anthropic
+# Step 2: Install Claude Code if needed
+if ! command -v claude &> /dev/null; then
+    echo "Installing Claude Code..."
+    npm install -g @anthropic-ai/claude-code 2>/dev/null || {
+        echo "Installing Node.js first..."
+        curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+        sudo apt-get install -y nodejs
+        npm install -g @anthropic-ai/claude-code
+    }
+fi
 
-# Step 3: Set your API key (REPLACE THIS WITH YOUR ACTUAL KEY)
-# You can find it at https://console.anthropic.com/settings/keys
 echo ""
 echo "============================================"
-echo "IMPORTANT: Set your Anthropic API key now"
+echo "Setup complete."
 echo "============================================"
 echo ""
-echo "Run this command (replace with your real key):"
+echo "Next steps:"
 echo ""
-echo '  export ANTHROPIC_API_KEY="sk-ant-your-key-here"'
+echo "  1. Log into Claude Code (one time):"
+echo "     claude login"
 echo ""
-echo "Then run this to start the loop:"
-echo ""
-echo '  cd ~/gqr-workspace/autoresearch && bash run-loop.sh'
+echo "  2. Start the optimization loop:"
+echo "     cd ~/gqr-workspace/autoresearch && bash run-loop.sh"
 echo ""

@@ -1,34 +1,31 @@
 #!/bin/bash
 # ============================================
 # Run the autoresearch optimization loop
+# Uses Claude Max subscription via Claude Code CLI
+# No API key needed
 # ============================================
 
 cd ~/gqr-workspace/autoresearch
-
-# Verify API key is set
-if [ -z "$ANTHROPIC_API_KEY" ]; then
-    echo "ERROR: ANTHROPIC_API_KEY not set"
-    echo "Run: export ANTHROPIC_API_KEY=\"sk-ant-your-key-here\""
-    exit 1
-fi
-
-echo "API key detected."
 
 # Check if Claude Code is installed
 if ! command -v claude &> /dev/null; then
     echo "Installing Claude Code..."
     npm install -g @anthropic-ai/claude-code 2>/dev/null || {
-        echo "npm not found, trying with apt..."
+        echo "npm not found, installing Node.js first..."
         curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
         sudo apt-get install -y nodejs
         npm install -g @anthropic-ai/claude-code
     }
 fi
 
-echo "Claude Code ready."
+# Check if logged in
+echo "Checking Claude Code login..."
+claude --version
+echo ""
+echo "If you're not logged in yet, run: claude login"
+echo ""
 
 # Run baseline eval first
-echo ""
 echo "============================================"
 echo "Running baseline evaluation..."
 echo "============================================"
@@ -38,7 +35,7 @@ echo ""
 echo "============================================"
 echo "Starting autoresearch loop..."
 echo "============================================"
-echo "This will run 20 cycles or until 90% pass rate."
+echo "This will run up to 20 cycles or until 90% pass rate."
 echo "Monitor: tail -f results/optimization_log.md"
 echo ""
 

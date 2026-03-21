@@ -2,19 +2,18 @@
 """
 runner.py — Rapid Source Skill Evaluation Harness
 
+Uses Claude Code CLI (your Claude Max subscription) instead of API keys.
+
 Usage:
     python evals/runner.py prompts/current.md
     python evals/runner.py prompts/current.md --verbose
     python evals/runner.py prompts/candidates/v3.md --verbose
-
-Scores the given skill file against 15 test cases using 8 binary assertions.
-Writes detailed results to results/latest_run.json.
-Prints a summary to stdout.
 """
 
 import argparse
 import json
 import os
+import subprocess
 import sys
 import time
 from datetime import datetime, timezone
@@ -31,32 +30,88 @@ TEST_CASES_PATH = EVALS_DIR / 'test_cases.jsonl'
 sys.path.insert(0, str(EVALS_DIR))
 from assertions import ASSERTIONS, ASSERTION_NAMES, run_all_assertions, all_pass  # noqa: E402
 
-# ---------------------------------------------------------------------------
-# Anthropic client setup
-# ---------------------------------------------------------------------------
-
-def get_anthropic_client():
-    try:
-        import anthropic
-    except ImportError:
-        print("ERROR: anthropic package not installed. Run: pip install anthropic")
-        sys.exit(1)
-
-    api_key = os.environ.get('ANTHROPIC_API_KEY')
-    if not api_key:
-        print("ERROR: ANTHROPIC_API_KEY environment variable not set.")
-        sys.exit(1)
-
-    return anthropic.Anthropic(api_key=api_key)
-
 
 # ---------------------------------------------------------------------------
-# Model and generation settings
+# Claude Code CLI call
 # ---------------------------------------------------------------------------
 
-MODEL = 'claude-sonnet-4-5'          # cost-efficient, strong instruction following
-MAX_TOKENS = 4096                       # InMails + Booleans fit comfortably
-TEMPERATURE = 0.3                       # low variance for consistent eval
+def call_claude(
+    system_prompt: str,
+    user_message: str,
+    retries: int = 3,
+    retry_delay: float = 5.0,
+) -> Optional[str]:
+    """
+    Call Claude via the Claude Code CLI using Bryan's Max subscription.
+    Uses 'claude -p' (print mode) which sends a single prompt and returns output.
+    No API key needed - uses the authenticated Claude Code session.
+    """
+    # Build the full prompt: system context + user input
+    full_prompt = f"""You are executing a skill file. Follow the instructions in the skill exactly. Here is the skill:
+
+---SKILL FILE START---
+{system_prompt}
+---SKILL FILE END---
+
+Now execute the skill for this input. Output ONLY the skill's deliverables (Boolean strings, InMails, follow-up, sourcing notes). No preamble, no commentary.
+
+INPUT:
+{user_message}"""
+
+    for attempt in range(1, retries + 1):
+        try:
+            result = subprocess.run(
+                ['claude', '-p', full_prompt, '--output-format', 'text'],
+                capture_output=True,
+                text=True,
+                timeout=120,  # 2 minute timeout per generation
+                cwd=str(PROJECT_ROOT),
+            )
+            
+            if result.returncode == 0 and result.stdout.strip():
+                return result.stdout.strip()
+            
+            # If claude CLI returned an error
+            if result.stderr:
+                error_msg = result.stderr.strip()[:200]
+                if attempt < retries:
+                    wait = retry_delay * attempt
+                    print(f"\n    [Attempt {attempt}/{retries}] CLI error: {error_msg}. Retrying in {wait:.0f}s...")
+                    time.sleep(wait)
+                else:
+                    print(f"\n    [Attempt {attempt}/{retries}] CLI error: {error_msg}. Giving up.")
+                    return None
+            elif not result.stdout.strip():
+                if attempt < retries:
+                    wait = retry_delay * attempt
+                    print(f"\n    [Attempt {attempt}/{retries}] Empty response. Retrying in {wait:.0f}s...")
+                    time.sleep(wait)
+                else:
+                    print(f"\n    [Attempt {attempt}/{retries}] Empty response. Giving up.")
+                    return None
+
+        except subprocess.TimeoutExpired:
+            if attempt < retries:
+                print(f"\n    [Attempt {attempt}/{retries}] Timeout. Retrying...")
+            else:
+                print(f"\n    [Attempt {attempt}/{retries}] Timeout. Giving up.")
+                return None
+
+        except FileNotFoundError:
+            print("\nERROR: 'claude' CLI not found. Install Claude Code:")
+            print("  npm install -g @anthropic-ai/claude-code")
+            sys.exit(1)
+
+        except Exception as e:
+            if attempt < retries:
+                wait = retry_delay * attempt
+                print(f"\n    [Attempt {attempt}/{retries}] {type(e).__name__}: {e}. Retrying in {wait:.0f}s...")
+                time.sleep(wait)
+            else:
+                print(f"\n    [Attempt {attempt}/{retries}] {type(e).__name__}: {e}. Giving up.")
+                return None
+
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -88,43 +143,6 @@ def load_test_cases() -> List[Dict]:
 
 
 # ---------------------------------------------------------------------------
-# API call with retry
-# ---------------------------------------------------------------------------
-
-def call_claude(
-    client,
-    system_prompt: str,
-    user_message: str,
-    retries: int = 3,
-    retry_delay: float = 5.0,
-) -> Optional[str]:
-    """
-    Call the Claude API with retry logic.
-    Returns the text content of the response, or None on failure.
-    """
-    for attempt in range(1, retries + 1):
-        try:
-            response = client.messages.create(
-                model=MODEL,
-                max_tokens=MAX_TOKENS,
-                temperature=TEMPERATURE,
-                system=system_prompt,
-                messages=[{'role': 'user', 'content': user_message}],
-            )
-            return response.content[0].text
-        except Exception as e:
-            error_type = type(e).__name__
-            if attempt < retries:
-                wait = retry_delay * attempt
-                print(f"    [Attempt {attempt}/{retries}] {error_type}: {e}. Retrying in {wait:.0f}s...")
-                time.sleep(wait)
-            else:
-                print(f"    [Attempt {attempt}/{retries}] {error_type}: {e}. Giving up.")
-                return None
-    return None
-
-
-# ---------------------------------------------------------------------------
 # Scoring
 # ---------------------------------------------------------------------------
 
@@ -134,15 +152,10 @@ def score_output(output: str, metadata: Dict) -> Dict[str, bool]:
 
 
 def compute_summary(all_results: List[Dict]) -> Dict[str, Any]:
-    """
-    Compute aggregate statistics from per-test-case results.
-    Returns a dict with overall pass rate and per-assertion rates.
-    """
     n = len(all_results)
     if n == 0:
         return {}
 
-    # Per-assertion pass counts
     assertion_pass_counts = {name: 0 for name in ASSERTION_NAMES}
     overall_pass_count = 0
 
@@ -174,10 +187,6 @@ def compute_summary(all_results: List[Dict]) -> Dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 def analyze_failures(all_results: List[Dict]) -> Dict[str, Any]:
-    """
-    Identify top failure patterns to guide optimization.
-    Returns structured failure analysis.
-    """
     failures_by_assertion = {name: [] for name in ASSERTION_NAMES}
     failures_by_function = {}
     failures_by_level = {}
@@ -196,7 +205,6 @@ def analyze_failures(all_results: List[Dict]) -> Dict[str, Any]:
                 failures_by_function.setdefault(fn, {}).setdefault(name, []).append(tc_id)
                 failures_by_level.setdefault(level, {}).setdefault(name, []).append(tc_id)
 
-    # Sort assertions by failure frequency
     sorted_failures = sorted(
         [(name, len(ids)) for name, ids in failures_by_assertion.items()],
         key=lambda x: x[1],
@@ -216,12 +224,11 @@ def analyze_failures(all_results: List[Dict]) -> Dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 def print_summary(skill_path: Path, summary: Dict, failure_analysis: Dict, verbose_results: List[Dict] = None):
-    """Print a human-readable summary to stdout."""
     sep = '-' * 60
     print(f"\n{sep}")
     print(f"RAPID SOURCE SKILL EVAL RESULTS")
     print(f"Skill file : {skill_path}")
-    print(f"Model      : {MODEL}")
+    print(f"Engine     : Claude Code CLI (Max subscription)")
     print(f"Timestamp  : {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     print(sep)
 
@@ -237,9 +244,9 @@ def print_summary(skill_path: Path, summary: Dict, failure_analysis: Dict, verbo
         rate = per_rates.get(name, 0)
         count = per_counts.get(name, 0)
         bar_fill = int(rate * 20)
-        bar = '█' * bar_fill + '░' * (20 - bar_fill)
-        flag = ' ⚠' if rate < 0.70 else ''
-        print(f"  {name:<25} {bar} {rate:.0%} ({count}/{n_total}){flag}")
+        bar = '#' * bar_fill + '.' * (20 - bar_fill)
+        flag = ' !!' if rate < 0.70 else ''
+        print(f"  {name:<25} [{bar}] {rate:.0%} ({count}/{n_total}){flag}")
 
     top_failures = failure_analysis.get('top_failing_assertions', [])
     if top_failures and top_failures[0][1] > 0:
@@ -254,13 +261,14 @@ def print_summary(skill_path: Path, summary: Dict, failure_analysis: Dict, verbo
 
     if verbose_results:
         print(f"\nPER-TEST-CASE RESULTS:")
-        print(f"  {'ID':<12} {'ALL':<5} {' '.join(n[:8] for n in ASSERTION_NAMES)}")
+        header = f"  {'ID':<12} {'ALL':<5} " + ' '.join(f"{n[:8]:<8}" for n in ASSERTION_NAMES)
+        print(header)
         for result in verbose_results:
             tc_id = result.get('id', 'unknown')
             scores = result.get('assertion_scores', {})
             passed_all = all(scores.get(n, False) for n in ASSERTION_NAMES)
             all_str = 'PASS' if passed_all else 'FAIL'
-            score_str = ' '.join('T' if scores.get(n, False) else 'F' for n in ASSERTION_NAMES)
+            score_str = ' '.join(f"{'PASS':<8}" if scores.get(n, False) else f"{'FAIL':<8}" for n in ASSERTION_NAMES)
             print(f"  {tc_id:<12} {all_str:<5} {score_str}")
 
     print(f"\n{sep}")
@@ -274,7 +282,7 @@ def print_summary(skill_path: Path, summary: Dict, failure_analysis: Dict, verbo
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Evaluate a rapid-source skill file against 15 test cases.'
+        description='Evaluate a rapid-source skill file against test cases using Claude Code CLI.'
     )
     parser.add_argument(
         'skill_file',
@@ -284,35 +292,42 @@ def main():
     parser.add_argument(
         '--verbose', '-v',
         action='store_true',
-        help='Print per-test-case assertion results'
+        help='Print per-test-case assertion results and include full output in JSON'
     )
     parser.add_argument(
         '--dry-run',
         action='store_true',
-        help='Run without calling the API — useful for testing the harness itself'
+        help='Run without calling Claude — useful for testing the harness'
     )
     args = parser.parse_args()
 
-    # Resolve paths relative to project root if relative paths given
     skill_path = args.skill_file
     if not skill_path.is_absolute():
         skill_path = PROJECT_ROOT / skill_path
 
-    # Load skill file and test cases
     skill_content = load_skill_file(skill_path)
     test_cases = load_test_cases()
 
-    print(f"Loaded {len(test_cases)} test cases from {TEST_CASES_PATH}")
-    print(f"Evaluating: {skill_path.relative_to(PROJECT_ROOT)}")
-    print(f"Model: {MODEL}")
-
+    # Verify Claude Code is available (unless dry run)
     if not args.dry_run:
-        client = get_anthropic_client()
-    else:
-        client = None
-        print("DRY RUN MODE: API calls will be skipped; all outputs will be empty strings.")
+        try:
+            check = subprocess.run(['claude', '--version'], capture_output=True, text=True, timeout=10)
+            if check.returncode != 0:
+                print("ERROR: Claude Code CLI not working properly.")
+                print("Make sure you're logged in: claude login")
+                sys.exit(1)
+            print(f"Claude Code: {check.stdout.strip()}")
+        except FileNotFoundError:
+            print("ERROR: 'claude' CLI not found.")
+            print("Install: npm install -g @anthropic-ai/claude-code")
+            sys.exit(1)
 
-    # Ensure results directory exists
+    print(f"Loaded {len(test_cases)} test cases")
+    print(f"Evaluating: {skill_path.name}")
+
+    if args.dry_run:
+        print("DRY RUN MODE: Claude calls skipped; outputs will be empty.")
+
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
     all_results = []
@@ -331,18 +346,16 @@ def main():
             output = ''
         else:
             output = call_claude(
-                client,
                 system_prompt=skill_content,
                 user_message=user_input,
             )
-            # Small delay to be a good API citizen
-            time.sleep(0.5)
+            # Brief pause between calls
+            time.sleep(1)
 
         if output is None:
-            print(' ERROR (API call failed)')
+            print(' ERROR')
             output = ''
 
-        # Score the output
         assertion_scores = score_output(output, metadata)
         passed_all = all_pass(assertion_scores)
         status = 'PASS' if passed_all else 'FAIL'
@@ -358,41 +371,35 @@ def main():
         }
 
         if args.verbose:
-            result['output'] = output  # Include full output in verbose mode
+            result['output'] = output
 
         all_results.append(result)
 
-    # Compute summary stats
     summary = compute_summary(all_results)
     failure_analysis = analyze_failures(all_results)
 
-    # Build the full results object
     run_results = {
         'timestamp': datetime.now(timezone.utc).isoformat(),
-        'skill_file': str(skill_path.relative_to(PROJECT_ROOT)),
-        'model': MODEL,
+        'skill_file': str(skill_path.name),
+        'engine': 'claude-code-cli',
         'summary': summary,
         'failure_analysis': failure_analysis,
         'test_results': all_results,
     }
 
-    # Save to results/latest_run.json
     latest_path = RESULTS_DIR / 'latest_run.json'
     with open(latest_path, 'w', encoding='utf-8') as f:
         json.dump(run_results, f, indent=2, default=str)
 
-    # Also save a timestamped copy for history
     ts = datetime.now().strftime('%Y%m%d_%H%M%S')
     skill_stem = skill_path.stem
     archive_path = RESULTS_DIR / f'run_{ts}_{skill_stem}.json'
     with open(archive_path, 'w', encoding='utf-8') as f:
         json.dump(run_results, f, indent=2, default=str)
 
-    # Print summary
     verbose_data = all_results if args.verbose else None
     print_summary(skill_path, summary, failure_analysis, verbose_data)
 
-    # Exit with non-zero code if pass rate < 90%
     pass_rate = summary.get('overall_pass_rate', 0)
     sys.exit(0 if pass_rate >= 0.90 else 1)
 

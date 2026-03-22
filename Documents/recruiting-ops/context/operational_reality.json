@@ -1,0 +1,429 @@
+{
+  "_meta": {
+    "type": "operational_context",
+    "version": "1.0",
+    "created": "2024-12-18",
+    "last_updated": "2026-03-19",
+    "purpose": "Captures the real operational environment, competitive dynamics, and strategic challenges at GQR that inform scheduling, job selection, and business strategy decisions",
+    "use_cases": [
+      "Monthly performance reviews with Nicole",
+      "Strategic planning conversations",
+      "Job selection and prioritization decisions",
+      "Time allocation discussions",
+      "Business development strategy",
+      "Any conversation requiring understanding of Bryan's actual working environment"
+    ]
+  },
+  
+  "competitive_environment": {
+    "team_structure": {
+      "total_recruiters": 8,
+      "bryan_peers": ["Kevin", "Rachel", "Aaron", "Holly", "and 3 others"],
+      "manager": "Nicole Leinders",
+      "team_dynamic": "Internal competition for candidates when team roles drop"
+    },
+    
+    "candidate_ownership_rules": {
+      "first_contact_advantage": "First recruiter to InMail a candidate owns submission rights for 48 hours",
+      "typical_participation": "When team role drops, 4-5 of 8 recruiters typically work it (not all 8)",
+      "late_movers": "2-3 recruiters start at massive disadvantage because busy with other work when role dropped",
+      "competition_intensity": "Racing against teammates to identify and contact best candidates before they do"
+    },
+    
+    "role_drop_dynamics": {
+      "predictability": "Completely unpredictable timing - could be any time during work hours",
+      "speculative_nature": "Many roles are speculative (no official sign-off, no terms of business, limited information)",
+      "information_quality": "Often working with: unclear salary ranges, unknown hiring managers, limited company knowledge",
+      "risk_of_waste": "Can invest 2-3 hours sourcing → role evaporates → must clean up candidate relationships",
+      "examples": {
+        "septerna_waste": "Sourced 3 strong Clinical Dev candidates, spent hours on calls, TA found internal candidates, role closed. Deflating but would do again because it was in wheelhouse.",
+        "structure_success": "Multiple contract placements because client responsive, good relationship, fast process"
+      }
+    },
+    
+    "information_asymmetry": {
+      "owned_accounts": "Full visibility - direct TA/hiring manager relationships, hear exact tone, no translation loss",
+      "team_accounts": "Filtered visibility through account owner, information gets lost in translation, miss nuances",
+      "impact": "Owned accounts = better information = higher win rate on placements",
+      "on_calls": "Sometimes looking up company pipeline DURING candidate screening calls because info is so limited"
+    }
+  },
+  
+  "commission_structure": {
+    "team_roles": {
+      "split": "50%",
+      "accounts": "Structure, Nicole's Pathalys/Alkermes, other teammates' clients",
+      "volume": "Higher volume of opportunities because all team accounts available",
+      "example": "$24K placement fee × 50% = $12K to Bryan"
+    },
+    
+    "owned_accounts": {
+      "split": "100%",
+      "accounts": "Ionis, Aditum Bio, Alumis, Neurona",
+      "volume": "Lower volume because only 4 accounts, still maturing",
+      "example": "$24K placement fee × 100% = $24K to Bryan",
+      "note": "Still compete with 7 teammates when owned account role drops, but Bryan gets full fee if he wins"
+    },
+    
+    "strategic_math": {
+      "scenario_a_all_team": "8 placements/year, all team roles at 50% = 8 × $12K = $96K commissions",
+      "scenario_b_mixed": "4 team roles (50%) + 4 owned accounts (100%) = (4 × $12K) + (4 × $24K) = $144K commissions",
+      "insight": "Same number of placements, 50% more money with owned account mix"
+    }
+  },
+  
+  "sourcing_workflow_reality": {
+    "project_setup": {
+      "time_required": "60 minutes for LinkedIn Recruiter project setup",
+      "activities": "Boolean search, filters, target profiles, InMail template creation",
+      "competitive_mode": "Can streamline to 30-45 min if racing teammates, but quality suffers"
+    },
+    
+    "inmail_outreach": {
+      "time_per_batch": "30-60 minutes to review profiles and send 5-10 InMails",
+      "quality_vs_speed": "Tension between thorough vetting and speed to claim candidates first"
+    },
+    
+    "response_timeline": {
+      "immediate": "Sometimes 2-3 hours (rare but happens)",
+      "typical": "Responses trickle in over first 72 hours",
+      "slow": "Many take days, weeks, or months to respond",
+      "never": "Many never respond at all",
+      "variability": "Completely unpredictable - can't schedule 'screening calls this afternoon' from morning sourcing"
+    },
+    
+    "screening_calls": {
+      "duration": "30 minutes each (not 15 min)",
+      "scheduling": "Back-and-forth to find time after InMail response",
+      "timing": "Usually happen next week, not same day as sourcing",
+      "lagging_indicator": "Screening calls completed are lagging indicator, InMails sent are leading indicator"
+    },
+    
+    "activity_metrics": {
+      "what_you_control": "InMails sent, hiring manager calls attempted, projects created",
+      "what_you_dont_control": "Response rates, connection rates, screening call conversion",
+      "kpi_measurement": "Activity KPIs measure leading indicators (InMails sent), not lagging (calls completed)"
+    }
+  },
+  
+  "job_selection_decision_framework": {
+    "factors_evaluated": [
+      "Candidate desirability (will they want this role?)",
+      "Your competitive advantage (do you have an edge?)",
+      "Learning curve (how fast can you get competent?)",
+      "Client responsiveness (will you get feedback?)",
+      "Speed/volume potential (fast cycle time?)"
+    ],
+    
+    "jump_immediately": {
+      "criteria": "Roles where Bryan has competitive advantage",
+      "examples": [
+        "Structure contract roles (Aaron relationship, know process, recent placements)",
+        "CDM/Stat Programmer roles anywhere (fraud detection expertise, H1B/India verification techniques)",
+        "Clinical Development in companies Bryan knows well",
+        "Roles where Bryan recently placed candidates (process familiarity)",
+        "Contract roles generally (faster process, volume potential)"
+      ]
+    },
+    
+    "pass_or_token_effort": {
+      "criteria": "Roles with low candidate desirability or high difficulty",
+      "examples": [
+        "Alkermes FTE roles (unrealistic expectations, hard sell, unpredictable rejections, 25 min max effort)",
+        "Roles requiring ultra-credentialed candidates (Harvard Med School types - uncomfortable probing)",
+        "Speculative roles with no TA contact (high waste risk like Septerna)",
+        "Roles where 3+ teammates already sourced heavily (too late to compete)"
+      ]
+    },
+    
+    "strategic_selective": {
+      "criteria": "Worth the risk but requires judgment",
+      "examples": [
+        "Roles in wheelhouse but unfamiliar companies (Septerna Clinical Dev - worth the risk)",
+        "Roles outside wheelhouse but easy to learn + good client (Sr CTM at Structure)"
+      ]
+    },
+    
+    "competitive_advantages_detail": {
+      "structure_therapeutics": {
+        "relationship": "Strong relationship with account manager Aaron",
+        "knowledge": "Know hiring process, salary ceilings, team dynamics from recent placements",
+        "responsiveness": "Client very responsive, good visibility, fast decisions",
+        "comfort": "Can sell company well, understand pipeline, familiar with team"
+      },
+      
+      "cdm_stat_programmer_roles": {
+        "fraud_detection": "Developed expertise spotting fraudulent candidates from India",
+        "h1b_identification": "Strong gut instinct on H1B candidates before speaking to them",
+        "verification_techniques": "Video call requirement, 'show me outside your window' technique to catch time zone fraud",
+        "innovation": "Created solutions others aren't comfortable implementing",
+        "lower_skill_focus": "Easier qualification process, focus on fraud detection vs deep technical probing"
+      },
+      
+      "clinical_development_wheelhouse": {
+        "experience": "Core specialty area",
+        "pattern_recognition": "Know what good candidates look like quickly",
+        "limited_learning_curve": "Can jump on roles in this area with minimal ramp-up"
+      },
+      
+      "contract_roles_preference": {
+        "speed": "Faster interview processes, lower expectations",
+        "volume": "High-volume potential, can place multiple in short time",
+        "efficiency": "Less scrutiny, quicker decisions, better for activity metrics"
+      }
+    },
+    
+    "areas_of_discomfort": {
+      "ultra_credentialed_candidates": "Uncomfortable probing Harvard Med School graduates, feels weird telling them they're not qualified",
+      "unfamiliar_therapeutic_areas": "Steep learning curve, must research on the fly during calls",
+      "speculative_roles_no_ta": "High risk of wasted time when no TA contact involved"
+    }
+  },
+  
+  "account_ownership_structure": {
+    "bryans_owned_accounts": {
+      "ionis": {
+        "status": "Your account, 100% commission if you place",
+        "current_state": "REACTIVATED - 2 remote roles (Safety Operations + Safety Specialist), 6 CV submissions, Anthony Elia has competing interview 2/17",
+        "contacts": "Monique Burke (past work), Sanjay Gauthier (warm lead)",
+        "challenge": "Interview scheduling delayed by mock inspection, need to lock down times before losing Anthony Elia to competing offer"
+      },
+
+      "aditum_bio": {
+        "status": "Your account, 100% commission if you place",
+        "current_state": "LOST - VP Clinical Development (Ben) lost to internal hire December 2025",
+        "challenge": "No active roles or relationship. Consider write-off unless new roles surface."
+      },
+      
+      "alumis": {
+        "status": "Your account, 100% commission if you place",
+        "current_state": "Failed to sign terms of business",
+        "challenge": "Stalled BD prospect, needs rescue or write-off"
+      },
+      
+      "neurona": {
+        "status": "Your account, 100% commission if you place",
+        "current_state": "Failed to sign terms of business",
+        "challenge": "Stalled BD prospect, needs rescue or write-off"
+      }
+    },
+    
+    "nicoles_accounts_bryan_supports": {
+      "pathalys": {
+        "status": "Nicole's account, 50% split if Bryan places",
+        "bryans_involvement": "Contractors work there but Nicole owns relationship",
+        "current_state": "Active contractor extensions, potential Q1 pipeline"
+      },
+      
+      "alkermes": {
+        "status": "Nicole's account, 50% split if Bryan places",
+        "bryans_approach": "Token effort only (25 min max)",
+        "rationale": "Hard sell, unrealistic expectations, unpredictable rejections, low ROI"
+      }
+    },
+    
+    "team_accounts_collaborative": {
+      "xellar": {
+        "status": "Team search, 50% split",
+        "bryans_performance": "Dominated sourcing, had 3 backup candidates. Now rebuilding with Douglas Lee, Anirban Chatterjee, Michael Fenn (all sent resumes Feb 11-12)",
+        "outcome": "Marcin (Bryan's) beaten by Kevin's candidates (Jan 2026). New candidates being submitted."
+      },
+      
+      "structure_therapeutics": {
+        "status": "Team search, 50% split",
+        "bryans_performance": "Multiple placements, strong relationship with Aaron (account manager)",
+        "current_work": "Senior CTM sourcing, competing with Rachel",
+        "advantage": "Bryan knows process, salary ranges, team dynamics from past placements"
+      }
+    },
+    
+    "bd_prospects_future_owned_accounts": {
+      "korro_bio": {
+        "status": "Trying to land as owned account",
+        "timeline": "Jan 1, 2026 agency decision deadline PASSED - status unknown",
+        "contacts": "Loïc/Stephine (CSO), Peter Aquino",
+        "strategy": "Check status - deadline passed, need to determine if still viable"
+      },
+      
+      "evolveimmune": {
+        "status": "Trying to land as owned account",
+        "contact": "Chanda",
+        "timeline": "Q1 2025 buildout signals",
+        "current_state": "Relationship cultivation phase"
+      },
+      
+      "axle": {
+        "status": "Trying to land as owned account",
+        "contact": "Stephanie Randall",
+        "current_state": "Unresponsive to TOB + case studies, likely dead",
+        "next_action": "Jan 6, 2026 follow-up email if Q1 budgets approved"
+      }
+    }
+  },
+  
+  "market_context": {
+    "biotech_pharma_environment": {
+      "unemployment": "Historic low unemployment rates in biotech/pharma",
+      "company_cash": "Many companies cash-strapped, reluctant to pay agency fees",
+      "hiring_difficulty": "Mission-critical roles hard to fill but companies resist 20-30% contingent fees",
+      "bd_challenge": "Convincing cash-strapped companies to pay premium for talent they desperately need"
+    },
+    
+    "bd_sales_cycle_reality": {
+      "timeline": "6-12+ months to convert prospect to client (sometimes over a year)",
+      "cold_call_success": "1 in 20 calls get answered",
+      "voicemail_strategy": "Most calls = voicemail planting, callbacks come weeks/months later",
+      "relationship_building": "Volume game - 10 voicemails this week + 10 next week + follow-up emails = maybe 1 callback in January"
+    },
+    
+    "bryans_year_2_context": {
+      "tenure": "2+ years at GQR (started December 2023)",
+      "challenge": "Owned account portfolio still thin - Aditum lost, Alumis/Neurona stalled, Ionis just reactivated",
+      "green_key_losses": "Lost 2 biggest accounts from previous firm to bankruptcies",
+      "current_bookings": "~$347,924 across 10 placements (FY25: April 1 - Feb 13 2026). Jan 2026: $61.5K Jake Olsen/IDEAYA. Feb 2026: $90,584 Liqiang He/IDEAYA.",
+      "progress": "10th placement booked (Liqiang He/IDEAYA $90.6K), best submission week ever (Feb 9), on track for all KPIs mid-month, IDEAYA became biggest volume driver (2 placements in 5 weeks), Ionis reactivated with 2 roles, webinar panel completed"
+    }
+  },
+  
+  "strategic_positioning": {
+    "current_state": "Year 2 - Ionis reactivated, IDEAYA high-volume driver, Aditum lost, BD sequences active for Q1 2026",
+    
+    "structural_tension": {
+      "short_term_survival": "Win enough team competitions to hit activity KPIs and stay employed",
+      "long_term_wealth": "Build owned account portfolio where placements = 2x the commission",
+      "time_allocation_reality": "Can't avoid team competition (unpredictable role drops), must maintain contribution"
+    },
+    
+    "impossible_strategies": {
+      "protected_time_blocks": "Cannot schedule 2-hour 'protected sourcing blocks' for owned accounts when team roles drop unpredictably",
+      "avoiding_team_roles": "Cannot just 'focus on owned accounts' - would miss KPIs and create political problems",
+      "forcing_50_50_split": "Structure prevents clean 50/50 owned vs team allocation"
+    },
+    
+    "realistic_strategies": {
+      "minimum_viable_owned_account_maintenance": "15-30 min relationship touches 3x/week on owned accounts",
+      "selective_team_competition": "Jump on roles where Bryan has competitive advantage, pass on Alkermes-type hard sells",
+      "rapid_owned_account_response": "When Ionis/Aditum roles drop, compete HARD because 100% commission justifies effort",
+      "bd_pipeline_building": "Focus BD efforts on landing 1-2 accounts that become exclusive producers",
+      "leverage_advantages": "Play to Structure relationship, CDM fraud detection, Clinical Dev wheelhouse"
+    },
+    
+    "two_track_approach": {
+      "track_1_short_term": "Win more team competitions by playing to strengths (Structure, contract roles, CDM)",
+      "track_2_long_term": "Minimum viable owned account maintenance + aggressive BD on Korro/EvolveImmune"
+    }
+  },
+  
+  "scheduling_implications": {
+    "what_doesnt_work": [
+      "Fixed morning blocks for 'owned account sourcing' (team roles will interrupt)",
+      "Scheduling 'sourcing + screening calls' same day (responses take days/weeks)",
+      "Planning perfect 50/50 split days (structure makes this impossible)",
+      "Ignoring team role drops to focus on strategy (political suicide + misses KPIs)"
+    ],
+    
+    "what_does_work": [
+      "Flexible afternoon blocks that pivot based on morning activity (team role dropped? Korro responses came in?)",
+      "Decision points at 10 AM and 1 PM to assess priorities",
+      "Morning time for owned account relationship touches before team online",
+      "Minimum viable owned account maintenance (30-60 min/day) rather than 2-hour blocks",
+      "Building in buffer/flex time for unpredictable team role drops",
+      "Measuring success by activities completed (InMails sent, calls attempted) not conversions (screens completed)"
+    ],
+    
+    "realistic_time_allocation": {
+      "owned_accounts_bd": "35-45% (impossible to get higher given team role drops)",
+      "team_support": "40-50% (necessary for KPIs and political survival)",
+      "admin_overhead": "10-20% (pipeline triage, wrap, prep)",
+      "acceptance": "This is Year 1 reality, not inefficiency. Allocation improves as owned accounts mature."
+    }
+  },
+  
+  "key_relationships": {
+    "nicole_leinders": {
+      "role": "Manager",
+      "dynamic": "Her priorities (team success, her accounts) don't perfectly align with Bryan's individual success",
+      "owned_accounts": "Pathalys, Alkermes",
+      "bryans_approach": "Must appear cooperative and hit team KPIs while building own account portfolio",
+      "meeting_prep": "Always prepare with specific data, solutions-oriented questions, track promises"
+    },
+    
+    "aaron_structure": {
+      "role": "Account manager at Structure Therapeutics",
+      "value": "Responsive, good visibility, Bryan's strongest client relationship",
+      "advantage": "Bryan knows salary ceilings, process, team dynamics",
+      "why_important": "Placements here are high-probability because of relationship depth"
+    },
+    
+    "teammates_competition": {
+      "kevin": "Xellar finalist advancing",
+      "rachel": "Also sourcing Structure Sr CTM, ahead in some searches",
+      "aaron_holly_others": "All competing for same candidate pool when team roles drop",
+      "dynamic": "Cooperative team culture BUT internal competition is real"
+    }
+  },
+  
+  "decision_frameworks": {
+    "when_team_role_drops": {
+      "evaluate": [
+        "Is this in my wheelhouse? (Clinical Dev, CDM, contract roles)",
+        "Do I have relationship advantage? (Structure, companies I know)",
+        "Is candidate profile desirable? (Good sell, realistic expectations)",
+        "Is client responsive? (Will I get feedback or waste time?)",
+        "Am I early enough to compete? (Or are 3+ teammates already sourcing?)"
+      ],
+      "jump_if": "2+ advantages present",
+      "pass_if": "Alkermes-type hard sell OR no competitive edge OR already late to race"
+    },
+    
+    "owned_account_prioritization": {
+      "ionis": "Relationship cultivation focus - hiring manager outreach, not just open role hunting",
+      "aditum": "Breakthrough or closure needed - stop limbo state",
+      "korro_bd": "Highest urgency - Jan 1 deadline, build candidate value before decision",
+      "evolveimmune_bd": "Medium priority - Q1 buildout timing, relationship cultivation",
+      "axle_bd": "Low priority - likely dead, Q1 check-in only"
+    },
+    
+    "time_investment_decisions": {
+      "high_roi": "Structure roles (relationship + 50% split), Owned account roles (100% split), CDM fraud detection roles (competitive advantage)",
+      "medium_roi": "Team roles in wheelhouse (50% split but good win probability)",
+      "low_roi": "Alkermes (token effort only), Speculative roles without TA contact (high waste risk)",
+      "when_uncertain": "Default to: Do I have competitive advantage? If no, pass."
+    }
+  },
+  
+  "monthly_review_context": {
+    "for_nicole_meetings": {
+      "frame_team_contribution": "Structure placements, CDM roles, team sourcing for activity KPIs",
+      "frame_owned_account_progress": "Relationship touches completed, BD pipeline advancement (Korro, EvolveImmune)",
+      "explain_allocation": "Team role drops are unpredictable, maintaining contribution while building owned accounts",
+      "data_to_track": "InMails sent, calls attempted (leading indicators) not just placements (lagging)",
+      "avoid": "Don't complain about team competition or express frustration with structural constraints"
+    },
+    
+    "success_metrics": {
+      "bookings": "~$347,924 FY25 across 10 placements (Jan 2026: +$61.5K Jake Olsen/IDEAYA, Feb 2026: +$90,584 Liqiang He/IDEAYA)",
+      "average_placement": "$34,792 (elevated due to contract strategy - 2 IDEAYA placements in 5 weeks)",
+      "retention": "97% six-month, 92% twelve-month",
+      "pipeline": "15+ active opportunities across IDEAYA (6), Structure (5), Xellar (1), Ionis (2), Iona (1), Carrie Farm (2), Karyopharm (3)"
+    }
+  },
+  
+  "critical_insights": {
+    "this_is_not_time_management": "Bryan's challenge isn't managing time better - it's strategic positioning in Year 1 of account building during worst biotech market in decade",
+    
+    "structural_constraints": "The competitive team dynamic, unpredictable role drops, and 50% commission split on team roles create structural barriers to clean time allocation",
+    
+    "year_1_reality": "Owned accounts aren't mature enough to generate sufficient volume. BD prospects take 6-12 months to convert. Team support fills the gap and hits KPIs.",
+    
+    "the_trap": "Reactive loop = team role drops → race teammates → invest hours → role evaporates OR someone else places → clean up candidates → repeat. Meanwhile owned accounts starve for attention.",
+    
+    "the_escape": "Minimum viable owned account maintenance + selective team competition (play to strengths) + aggressive BD on highest-potential prospects (Korro Jan 1 deadline)",
+    
+    "success_looks_like": "Year 2: 60% of placements from owned accounts (100% commission) because accounts matured. Year 1: 70% team support is survival mode, not failure.",
+    
+    "what_ai_scheduling_cant_solve": "Cannot create 'protected time blocks' when team roles drop unpredictably. Cannot force 50/50 allocation when structure prevents it. Cannot schedule same-day screening calls from morning sourcing.",
+    
+    "what_ai_scheduling_can_solve": "Flexible decision frameworks, realistic success metrics (activities not conversions), strategic prioritization of owned account touches, minimum viable maintenance approach"
+  }
+}

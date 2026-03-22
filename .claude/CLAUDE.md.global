@@ -1,0 +1,8 @@
+# Global Defaults - Bryan Blair
+
+These preferences apply across all projects and working directories.
+
+## Working Preferences
+- Ask before guessing when something is unclear
+- Speed matters - don't over-deliberate on sourcing tasks
+- Windows 11, bash shell via Git (not native CMD/PowerShell syntax in Claude Code)

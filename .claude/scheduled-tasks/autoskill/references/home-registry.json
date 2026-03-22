@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "description": "Autoskill home registry. mutate homes may be edited. audit_only homes may be discovered and scored, but never changed.",
+  "homes": [
+    {
+      "home_id": "claude-skills",
+      "roots": [
+        "~/.claude/skills"
+      ],
+      "mode": "mutate",
+      "exclude_patterns": [
+        "**/.system/**",
+        "**/vendor_imports/**"
+      ],
+      "registry_target": "~/CLAUDE.md"
+    },
+    {
+      "home_id": "claude-scheduled-tasks",
+      "roots": [
+        "~/.claude/scheduled-tasks"
+      ],
+      "mode": "mutate",
+      "exclude_patterns": [
+        "**/.system/**",
+        "**/vendor_imports/**"
+      ],
+      "registry_target": "~/CLAUDE.md"
+    },
+    {
+      "home_id": "codex-skills",
+      "roots": [
+        "~/.codex/skills"
+      ],
+      "mode": "audit_only",
+      "exclude_patterns": [
+        "**/.system/**",
+        "**/vendor_imports/**"
+      ],
+      "registry_target": null
+    },
+    {
+      "home_id": "agent-skills",
+      "roots": [
+        "~/.agents/skills"
+      ],
+      "mode": "audit_only",
+      "exclude_patterns": [
+        "**/.system/**",
+        "**/vendor_imports/**"
+      ],
+      "registry_target": null
+    }
+  ]
+}

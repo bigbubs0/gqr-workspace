@@ -2,6 +2,12 @@ node_modules/
 desktop.ini
 .849C9593-D756-4E56-8D6E-42412F2A707B
 *.lnk
+
+# Credentials - NEVER commit
+.env
+**/.env
+*.env.*
+
 .claude/plans/
 .claude/Apartment Documents/
 .claude/Biotech News/
@@ -25,3 +31,13 @@ OneDrive - Green Key Resources/
 Documents/Workout Logs/
 .playwright-cli/
 .playwright-mcp/
+
+# Nested git repos (managed separately)
+autoresearch/
+autoresearch.bundle
+Documents/desktop-tutorial/
+mcp-servers/
+Documents/GitHub/
+
+# Temp/junk files
+zip-audit-output/

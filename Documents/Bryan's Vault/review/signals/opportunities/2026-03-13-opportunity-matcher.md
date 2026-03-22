@@ -1,4 +1,4 @@
-﻿# Opportunity Matcher - 2026-03-13
+# Opportunity Matcher - 2026-03-13
 
 Source set: `USER.md`, `TODO.md`, `config/notion-databases.json`, `config/signal-automations.json`, latest radar `review/signals/daily/2026-03-12-morning-signal-radar.md`, local mirrors in `recruiting/searches` and `recruiting/candidates`.
 

@@ -91,7 +91,8 @@
 
 ## 2026-03-16 10:58:41 -04:00
 - Morning Signal Radar run completed for automation morning-signal-radar-2.
-- Published eview/signals/daily/2026-03-16-morning-signal-radar.md with ordered owned/team/warm lead/net-new sections and blocker-mode notes.
+- Published 
+eview/signals/daily/2026-03-16-morning-signal-radar.md with ordered owned/team/warm lead/net-new sections and blocker-mode notes.
 - Attempted mapped Notion source pull and hit MCP auth requirement; preserved explicit blockers instead of assumptions.
 - Updated only morning-signal-radar health fields in config/signal-automations.json.
 
@@ -109,7 +110,9 @@
 
 ## 2026-03-17 2026-03-17T08:36:05-04:00
 - Morning Signal Radar run refreshed review/signals/daily/2026-03-17-morning-signal-radar.md with ordered sections (owned, team, warm lead, net-new) and explicit blocker-mode handling.
-- Mapped Notion sources were unavailable in runtime (esources=[], esourceTemplates=[]), so web-verified unstable facts were used with source-gap blockers preserved.
+- Mapped Notion sources were unavailable in runtime (
+esources=[], 
+esourceTemplates=[]), so web-verified unstable facts were used with source-gap blockers preserved.
 - Updated only morning-signal-radar fields in config/signal-automations.json: last_success_at, last_error, last_output_path.
 
 ## 2026-03-17 2026-03-17T09:49:12.2671955-04:00
@@ -130,6 +133,8 @@
 
 ## 2026-03-18 2026-03-18T22:32:28.0284058-04:00
 - Morning Signal Radar run published review/signals/daily/2026-03-18-morning-signal-radar.md with blocker-mode handling.
-- Notion mapped-source pull unavailable in runtime (esources=[], esourceTemplates=[]), so web verification was used and source-gap blockers were logged.
+- Notion mapped-source pull unavailable in runtime (
+esources=[], 
+esourceTemplates=[]), so web verification was used and source-gap blockers were logged.
 - Updated only morning-signal-radar health fields in config/signal-automations.json.
 

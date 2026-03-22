@@ -1,8 +1,8 @@
 ---
 source: notion
 notion_id: 2e874761-3c9a-8182-8f61-e1c129af0755
-last_synced: 2026-03-15 04:42
-stale_after: 2026-03-17 04:42
+last_synced: 2026-03-22 02:45
+stale_after: 2026-03-24 02:45
 status: Interviewing
 current_company: IO Biotech (laid off)
 ---

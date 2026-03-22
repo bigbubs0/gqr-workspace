@@ -1,4 +1,4 @@
-﻿# Monday Catalyst Board - 2026-03-16
+# Monday Catalyst Board - 2026-03-16
 
 Run at: 2026-03-16 10:59 AM ET
 Primary source: BioPharmCatalyst FDA Calendar and PDUFA Calendar

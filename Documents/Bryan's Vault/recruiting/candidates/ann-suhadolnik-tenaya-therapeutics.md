@@ -1,8 +1,8 @@
 ---
 source: notion
 notion_id: 2e874761-3c9a-8126-8d5f-cfa9d80eae2e
-last_synced: 2026-03-15 04:42
-stale_after: 2026-03-17 04:42
+last_synced: 2026-03-22 02:45
+stale_after: 2026-03-24 02:45
 status: Active
 current_company: Tenaya Therapeutics
 ---

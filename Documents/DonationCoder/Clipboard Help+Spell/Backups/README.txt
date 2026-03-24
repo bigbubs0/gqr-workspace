@@ -1,1 +1,0 @@
-This directory contains your database backup files, created automatically by the program.

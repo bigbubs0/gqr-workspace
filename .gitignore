@@ -1,13 +1,29 @@
+# ============================================================
+# GQR Workspace .gitignore
+# Updated: 2026-03-24
+# Strategy: Track infrastructure (config, skills, tools, .md,
+# .py, .json). Exclude business documents and binaries.
+# ============================================================
+
+# --- Node / package artifacts ---
 node_modules/
+package.json
+package-lock.json
+Dockerfile
+
+# --- OS / editor junk ---
 desktop.ini
 .849C9593-D756-4E56-8D6E-42412F2A707B
 *.lnk
+Thumbs.db
+.DS_Store
 
-# Credentials - NEVER commit
+# --- Credentials ---
 .env
 **/.env
 *.env.*
 
+# --- Claude internal ---
 .claude/plans/
 .claude/Apartment Documents/
 .claude/Biotech News/
@@ -15,29 +31,93 @@ desktop.ini
 .claude/Downloads - Copy/
 .claude/In Basket/
 
-# Large binary files
+# --- Business documents (binary formats) ---
+*.docx
+*.docm
+*.xlsx
+*.xls
+*.pptx
+*.pdf
+*.odt
+*.doc
+*.csv
+
+# --- Database files ---
+*.db
+*.sqlite
+*.sqlite3
+
+# --- Python artifacts ---
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# --- Large binary files ---
 SigmaOS.dmg
 *.msi
 *.zip
 *.mp4
+*.dmg
+*.exe
 
-# Large directories (kept locally, too big for GitHub)
+# --- Large directories ---
 Pictures/
-Knowledge Base/*.pdf
-Knowledge Base/**/*.pdf
-Knowledge Base/*.json
+Recordings/
+Whiteboards/
+Desktop/
 Microsoft Teams Chat Files/
 OneDrive - Green Key Resources/
 Documents/Workout Logs/
+Knowledge Base/
+
+# --- CV and candidate directories ---
+CVs 2026/
+BD Spec CVs/
+Pharmacology/
+
+# --- Job descriptions ---
+Job Descriptions/
+
+# --- Image files at root ---
+*.png
+*.jpg
+*.jpeg
+
+# --- Abandoned / external ---
+devin-dobek-site/
 .playwright-cli/
 .playwright-mcp/
 
-# Nested git repos (managed separately)
+# --- Nested git repos ---
 autoresearch/
 autoresearch.bundle
 Documents/desktop-tutorial/
 mcp-servers/
 Documents/GitHub/
 
-# Temp/junk files
+# --- Business data directories ---
+Aditum/
+Ionis/
+Documents/DonationCoder/
+Documents/OneNote Notebooks/
+Documents/Green Key/
+Documents/plexity/
+
+# --- Windows shortcuts, backups, app data ---
+*.url
+*.eml
+*.bkp
+*.accdb
+*.one
+*.dotx
+*.dat
+*.lck
+*.blb
+*.idx
+*.log
+Documents/DonationCoder/
+Documents/cache/
+
+# --- Temp/junk ---
 zip-audit-output/

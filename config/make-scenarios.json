@@ -1,7 +1,7 @@
 {
   "_description": "Make.com scenario IDs and webhook URLs for Bryan Blair's automation infrastructure.",
-  "_updated": "2026-03-21",
-  "_status": "Partially populated. Many scenarios are spec'd but not yet built.",
+  "_updated": "2026-03-24",
+  "_status": "4 active scenarios (router patch + 3 signal scanners). 6 remaining spec'd but not built.",
 
   "scenarios": {
     "router_filter_patch": {
@@ -29,20 +29,22 @@
       "spec_location": "Notion: Automation Specs page"
     },
     "funding_signal_5_50m": {
-      "scenario_id": null,
-      "status": "not_built",
-      "description": "Daily 6 AM: Perplexity API query for $5-50M biotech funding, pushes to Notion.",
-      "spec_location": "Notion: Perplexity + Make.com Automation Setup page"
+      "scenario_id": "4507970",
+      "status": "active",
+      "description": "Daily 6:03 AM ET: Perplexity sonar query for $5-50M biotech funding, creates entries in Notion 5-50M Funding Tracker.",
+      "notion_target": "9490e7cc-0504-4412-85ad-32b2ad7e906e"
     },
     "funding_signal_megaround": {
-      "scenario_id": null,
-      "status": "not_built",
-      "description": "Daily 6 AM: Perplexity API query for $50M+ rounds, pushes to Notion."
+      "scenario_id": "4507974",
+      "status": "active",
+      "description": "Daily 6:07 AM ET: Perplexity sonar query for $50M+ rounds/IPOs/PIPEs, creates entries in Notion Megaround Funding Tracker.",
+      "notion_target": "927267bf-ec5b-4b20-9829-2b9d6371ba23"
     },
     "layoffs_signal": {
-      "scenario_id": null,
-      "status": "not_built",
-      "description": "Daily 6 AM: Perplexity API query for biotech layoffs/restructuring."
+      "scenario_id": "4507978",
+      "status": "active",
+      "description": "Daily 6:11 AM ET: Perplexity sonar query for biotech layoffs/restructuring, creates entries in Notion Layoffs & Restructuring DB.",
+      "notion_target": "21cf7674-0da8-4812-8708-04b65a252cac"
     },
     "positive_data_signal": {
       "scenario_id": null,

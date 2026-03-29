@@ -41,3 +41,13 @@ Documents/GitHub/
 
 # Temp/junk files
 zip-audit-output/
+
+# Python cache and build artifacts
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# SQLite databases (generated at runtime)
+recruiter-tool/data/candidates.db

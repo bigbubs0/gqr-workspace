@@ -2,7 +2,31 @@
 
 > Single-file operating context for Bryan Blair's recruiting intelligence infrastructure.
 > Loads into Claude.ai, Claude Code, Make.com HTTP modules, and any new tool without modification.
-> Last updated: 2026-03-21 (V1.1 — Section 9 refreshed from Friday 3/20 pipeline snapshot + week-of-3/16 meeting notes)
+> Last updated: 2026-03-24 (V1.2 — Added freshness metadata + changelog)
+
+<!--
+FRESHNESS METADATA — do not remove
+last_updated: 2026-03-24
+version: 1.2
+next_review: 2026-07-01
+review_cadence: quarterly (Section 9 weekly, Sections 1-8 quarterly)
+review_trigger: context-refresh scheduled task
+staleness_threshold_days: 90
+-->
+
+### Section Freshness
+
+| Section | Last Verified | Cadence | Owner |
+|---------|--------------|---------|-------|
+| 1: Identity | 2026-03-21 | Quarterly | Bryan |
+| 2: Operating Rules | 2026-03-21 | Quarterly | Bryan |
+| 3: Voice DNA | 2026-03-21 | Quarterly | Bryan |
+| 4: Recruiting Frameworks | 2026-03-21 | Quarterly | Bryan |
+| 5: Content Brands | 2026-03-21 | Monthly | Bryan |
+| 6: Priority Signals | 2026-03-21 | Monthly | Bryan |
+| 7: Tools & Infrastructure | 2026-03-21 | Quarterly | Bryan |
+| 8: Research & Processing | 2026-03-21 | Quarterly | Bryan |
+| 9: Active State | 2026-03-21 | Weekly (EOD sweep / pipeline-sync) | Bryan + Claude |
 
 ---
 

@@ -1,7 +1,7 @@
 {
   "_description": "Make.com scenario IDs and webhook URLs for Bryan Blair's automation infrastructure.",
-  "_updated": "2026-03-24",
-  "_status": "4 active scenarios (router patch + 3 signal scanners). 6 remaining spec'd but not built.",
+  "_updated": "2026-03-29",
+  "_status": "9 active scenarios (router patch + 4 signal scanners + 3 context sync + signal feed rewrite). Signal scanners fixed: JSON fence stripping + Layoffs property name corrections. Company Intelligence sync rewritten to query signal DBs directly (was broken by missing Company Core rollup). EOD inbox scan uses browser automation workaround.",
 
   "scenarios": {
     "router_filter_patch": {
@@ -10,21 +10,23 @@
       "description": "Router filter patch for Notion candidate mapping. Fixed via API blueprint update."
     },
     "eod_inbox_scan": {
-      "scenario_id": null,
-      "status": "not_built",
-      "description": "EOD sweep: Graph API pulls Outlook inbox/sent at 5:30 PM ET, formats markdown, pushes to Notion EOD Scan Output page + Google Drive.",
-      "spec_location": "Notion: Automation Specs page (2e974761-3c9a-8136-b05f-cd75b116dba6)",
-      "blocker": "Microsoft 365 OAuth not yet authorized in Make.com"
+      "scenario_id": "4472273",
+      "status": "active",
+      "description": "EOD sweep: Claude Code scheduled task reads Outlook Web via browser automation at 5:30 PM ET, formats email data, POSTs to Make.com webhook. Make.com pushes to Notion EOD Scan Output page + Google Drive.",
+      "schedule": "webhook (triggered by Claude Code scheduled task 'eod-email-scan' weekdays 17:30)",
+      "webhook_id": 2058245,
+      "webhook_url": "https://hook.us2.make.com/3qkyygxjc6163aup23anr661py7u3ut1",
+      "note": "Power Automate blocked (Wynden Stark LLC env lacks Office 365 Outlook + HTTP connectors). Make.com blocked (no Microsoft 365 OAuth admin). Solution: Claude Code browser automation feeds the webhook."
     },
     "ai_inbox_classifier": {
-      "scenario_id": null,
-      "status": "not_built",
+      "scenario_id": "3908277",
+      "status": "built_inactive",
       "description": "Watches Inbox - Quick Capture for Status=New items, classifies via Claude API, routes to correct destination.",
       "spec_location": "Notion: Automation Specs page"
     },
     "weekly_staleness_sweep": {
-      "scenario_id": null,
-      "status": "not_built",
+      "scenario_id": "3908478",
+      "status": "built_inactive",
       "description": "Sunday 6 AM: archives stale inbox items, sends email summary.",
       "spec_location": "Notion: Automation Specs page"
     },
@@ -32,24 +34,51 @@
       "scenario_id": "4507970",
       "status": "active",
       "description": "Daily 6:03 AM ET: Perplexity sonar query for $5-50M biotech funding, creates entries in Notion 5-50M Funding Tracker.",
+      "schedule": "daily 06:03",
       "notion_target": "9490e7cc-0504-4412-85ad-32b2ad7e906e"
     },
     "funding_signal_megaround": {
       "scenario_id": "4507974",
       "status": "active",
       "description": "Daily 6:07 AM ET: Perplexity sonar query for $50M+ rounds/IPOs/PIPEs, creates entries in Notion Megaround Funding Tracker.",
+      "schedule": "daily 06:07",
       "notion_target": "927267bf-ec5b-4b20-9829-2b9d6371ba23"
     },
     "layoffs_signal": {
       "scenario_id": "4507978",
       "status": "active",
       "description": "Daily 6:11 AM ET: Perplexity sonar query for biotech layoffs/restructuring, creates entries in Notion Layoffs & Restructuring DB.",
+      "schedule": "daily 06:11",
       "notion_target": "21cf7674-0da8-4812-8708-04b65a252cac"
     },
     "positive_data_signal": {
-      "scenario_id": null,
-      "status": "not_built",
-      "description": "Daily 6 AM: Perplexity API query for positive clinical data readouts."
+      "scenario_id": "4510851",
+      "status": "active",
+      "description": "Daily 6:15 AM ET: Perplexity sonar query for positive clinical data readouts, FDA approvals, and milestones, creates entries in Notion Positive Data & Milestones DB.",
+      "schedule": "daily 06:15",
+      "notion_target": "c5a4112f-cd39-479f-a90f-3165a1ec7a60"
+    },
+    "context_sync_active_searches": {
+      "scenario_id": "4260680",
+      "status": "active",
+      "description": "Hourly: Queries Notion Active Searches (Active + On Hold) and writes individual markdown files to OneDrive vault + dashboard summary.",
+      "schedule": "hourly",
+      "vault_target": "/Documents/Bryan's Vault/recruiting/searches/"
+    },
+    "context_sync_candidate_pipeline": {
+      "scenario_id": "4260717",
+      "status": "active",
+      "description": "Hourly: Queries Notion Candidates (Active, Screening, Submitted, Interviewing, Offer) and writes individual markdown files to OneDrive vault + dashboard summary.",
+      "schedule": "hourly",
+      "vault_target": "/Documents/Bryan's Vault/recruiting/candidates/"
+    },
+    "context_sync_signal_feed": {
+      "scenario_id": "4260719",
+      "status": "active",
+      "description": "Every 4 hours: Queries all 4 signal databases directly (Positive Data, Layoffs, Funding 5-50M, Megaround) for last 7 days, aggregates into signal-feed.md dashboard. Rewritten 2026-03-29 to remove dependency on Company Core rollup property that never existed.",
+      "schedule": "every 4 hours",
+      "vault_target": "/Documents/Bryan's Vault/bryan/dashboards/signal-feed.md",
+      "note": "Previously 'Context Sync: Company Intelligence to Vault'. Rewritten because Company Core lacks 'Most recent signal date' rollup. Now queries signal DBs directly."
     },
     "decision_log": {
       "scenario_id": null,
@@ -61,7 +90,7 @@
       "scenario_id": null,
       "status": "not_built",
       "description": "Webhook receives voice note transcriptions, parses and routes to Notion databases.",
-      "blocker": "Depends on program.md + EOD sweep being stable first (priority #3)"
+      "blocker": "Depends on EOD sweep being stable first"
     }
   },
 

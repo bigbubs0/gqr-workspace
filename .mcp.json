@@ -13,6 +13,16 @@
         "@modelcontextprotocol/server-filesystem",
         "C:\\Users\\BryanBlair\\OneDrive - GQR Global Markets\\Knowledge base"
       ]
+    },
+    "windows-mcp": {
+      "type": "stdio",
+      "command": "C:\\Users\\BryanBlair\\.local\\bin\\uv.exe",
+      "args": [
+        "--directory",
+        "C:\\Users\\BryanBlair\\Windows-MCP",
+        "run",
+        "windows-mcp"
+      ]
     }
   }
 }

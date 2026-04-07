@@ -9,6 +9,7 @@ A custom web-based tool for biotech/pharma executive recruiters to automate cand
 - **Searchable Database**: Store and filter candidates by therapeutic area, phase experience, company, and custom search tags
 - **Batch Export**: Export multiple candidates at once based on filter criteria
 - **Local Storage**: All data stored locally in SQLite database
+- **Local Telemetry**: Writes redacted JSONL traces for latency, token usage, retries, validation, and cost under `telemetry/`
 
 ## Setup Instructions
 
@@ -29,14 +30,19 @@ A custom web-based tool for biotech/pharma executive recruiters to automate cand
    pip install -r requirements.txt
    ```
 
-3. **Set up your OpenAI API key:**
+3. **Set up your environment:**
    - Copy `.env.example` to `.env`:
      ```bash
      copy .env.example .env
      ```
-   - Open `.env` in a text editor and add your OpenAI API key:
+   - Open `.env` in a text editor and set the values:
      ```
-     OPENAI_API_KEY=sk-your-actual-api-key-here
+      OPENAI_API_KEY=sk-your-actual-api-key-here
+      OPENAI_MODEL=gpt-5.4
+      OPENAI_REASONING_EFFORT=medium
+      TELEMETRY_ENABLED=true
+      TELEMETRY_DIR=telemetry
+      TELEMETRY_LOG_RAW_PROMPTS=false
      ```
 
 ### Running the Application
@@ -106,6 +112,17 @@ The AI is trained to recognize and highlight:
 - Database is created automatically on first run
 - Data is stored locally on your machine
 
+## Telemetry
+
+- Request and stage spans are written to `telemetry/custom-spans.ndjson`
+- One-line request summaries are written to `telemetry/run-summaries.ndjson`
+- Redacted errors are written to `telemetry/errors.ndjson`
+- Raw transcripts, prompts, and generated briefs are not exported to telemetry
+- To generate Chrome Trace JSON from saved spans:
+  ```bash
+  python export_chrome_trace.py
+  ```
+
 ## Future Enhancements (Phase 2)
 
 Once you've tested the basic prototype, we can add:
@@ -132,8 +149,8 @@ Once you've tested the basic prototype, we can add:
 
 ## Cost Estimates
 
-Using GPT-4 Turbo for extraction:
-- Average cost per candidate: $0.02-0.05 (depending on transcript length)
+Using GPT-5.4 for extraction:
+- Average cost per candidate depends on transcript length, output length, and cache reuse
 - 50 candidates/month = ~$1-2.50/month in API costs
 
 Very affordable for the automation value provided.

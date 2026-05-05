@@ -2,12 +2,12 @@
 
 > Single-file operating context for Bryan Blair's recruiting intelligence infrastructure.
 > Loads into Claude.ai, Claude Code, Make.com HTTP modules, and any new tool without modification.
-> Last updated: 2026-03-24 (V1.2 — Added freshness metadata + changelog)
+> Last updated: 2026-05-05 (V1.3 — synced structural changes from global; Section 9 refreshed to 4/17 snapshot)
 
 <!--
 FRESHNESS METADATA — do not remove
-last_updated: 2026-03-24
-version: 1.2
+last_updated: 2026-05-05
+version: 1.3
 next_review: 2026-07-01
 review_cadence: quarterly (Section 9 weekly, Sections 1-8 quarterly)
 review_trigger: context-refresh scheduled task
@@ -22,11 +22,21 @@ staleness_threshold_days: 90
 | 2: Operating Rules | 2026-03-21 | Quarterly | Bryan |
 | 3: Voice DNA | 2026-03-21 | Quarterly | Bryan |
 | 4: Recruiting Frameworks | 2026-03-21 | Quarterly | Bryan |
-| 5: Content Brands | 2026-03-21 | Monthly | Bryan |
-| 6: Priority Signals | 2026-03-21 | Monthly | Bryan |
+| 5: Content Brands | 2026-03-21 | Monthly (due for refresh) | Bryan |
+| 6: Priority Signals | 2026-03-21 | Monthly (due for refresh) | Bryan |
 | 7: Tools & Infrastructure | 2026-03-21 | Quarterly | Bryan |
 | 8: Research & Processing | 2026-03-21 | Quarterly | Bryan |
-| 9: Active State | 2026-03-21 | Weekly (EOD sweep / pipeline-sync) | Bryan + Claude |
+| 9: Active State | 2026-04-18 | Weekly (EOD sweep / pipeline-sync) | Bryan + Claude |
+
+### Quick Nav
+
+- Identity / rules / voice: sections 1-3
+- Recruiting frameworks + ICP + CV scoring: section 4
+- Content brands (RecruitRx, recruit.ai): section 5
+- Signals to flag + priority order: section 6
+- Tools, Notion, MCP servers, workspace layout, skills inventory: section 7
+- Research + job sweep + candidate processing rules: section 8
+- Current pipeline, active candidates, Monday priorities, TODO: section 9
 
 ---
 
@@ -48,7 +58,7 @@ staleness_threshold_days: 90
 ### Communication Standards
 
 - Greetings: Always `Hi [Name],`
-- Punctuation: Always hyphen (-), never em dash
+- Punctuation: Always hyphen (-), never em dash. (Rule applies to outbound deliverables. Structural em dashes inside this internal doc are intentional and do not count.)
 - Terminology: "CV" not "resume." "Search Consultant" not "recruiter" in external content.
 - Default to finished deliverables — not suggestions, outlines, or recommendations.
 - Always open to alternative perspectives when relevant.
@@ -226,6 +236,11 @@ Database IDs: stored in `/config/notion-databases.json` (Claude Code) or availab
 | ClinicalTrials.gov | Pipeline research, trial phase transitions, investigator ID | |
 | PubMed | Scientific literature, thought leadership research | |
 | Airtable | Secondary tracking (GQR Candidate Tracking) | |
+| Notion MCP | Notion DB search, candidate/company/signal writes | Descriptor: `~/.cursor/projects/c/mcps/plugin-Notion-notion/` |
+| Context7 MCP | Up-to-date library/framework docs | Use before API questions instead of relying on training data |
+| Playwright MCP | Headless browser for testing / scraping | Descriptor: `~/.cursor/projects/c/mcps/plugin-playwright-playwright/` |
+| Cursor IDE Browser MCP | Interactive browser with snapshots, clicks, forms | Frontend/webapp testing in-IDE |
+| Cursor App Control MCP | Create or move Cursor workspaces | `create_project`, `move_agent_to_root` |
 
 ### Workspace Structure (Claude Code)
 
@@ -254,6 +269,29 @@ Never delete files — archive to `/archive/` instead.
 ### Archive Triggers
 
 Move to `/archive/` when: company acquired or shut down, requisition formally closed, candidate placed or withdrawn, 12 months with no activity, account classified as Dead.
+
+### Skills Inventory (`~/.claude/skills/`)
+
+Agent skills are auto-discovered at session start. Current inventory:
+
+- `add-candidate` - parse candidate info and create Notion record with linking
+- `anti-slop` - strip AI-sounding phrasing from any written output
+- `candidate-submission` - draft submittal emails (highest-volume recurring task)
+- `client-brief` - company intelligence brief from Notion
+- `consolidate-memory` - merge/prune memory files
+- `eod-sweep` - end-of-day pipeline reconciliation (Outlook + Notion + drafts)
+- `internal-comms` - status reports, leadership updates, 3P updates
+- `nicole-weekly` - Nicole's weekly 1:1 email (pulls recent chats first)
+- `plugin-marketplace-builder` - build/update Claude plugin marketplaces
+- `rapid-source` - JD -> Boolean search + InMail package (48hr ownership matters)
+- `schedule` - create scheduled/on-demand tasks
+- `sentence-editor` - apply the 8-rule framework to any text
+- `setup-cowork` - install matching plugin, connect tools
+- `signal-intake` - log biotech signal to Notion with Company Core linking
+- `signal-to-brief` - signal intake + Perplexity research + client brief (chained)
+- `writing-substance` - thesis lock, sourced specifics, structural choice for persuasive prose
+
+Skills in `~/.claude/skills/` load across all projects. Project-local skills live in `<project>/.claude/skills/`.
 
 ---
 
@@ -300,97 +338,112 @@ Move to `/archive/` when: company acquired or shut down, requisition formally cl
 > This section changes frequently. In Claude.ai, defer to memory for current account state.
 > In Claude Code, this section is the local mirror — update it during EOD sweeps and pipeline syncs.
 
+> ⚠️ **STALE as of 2026-04-28** — last verified 2026-04-18 (10 days ago). Pipeline state below is historical, not current.
+> Refresh path: run `eod-sweep` skill, then `pipeline-sync`. Do not act on §9 contents until refreshed.
+
 ### Account Snapshot
 
-_Last verified: 2026-03-20 (Friday pipeline snapshot from Notion)_
+_Last verified: 2026-04-18 (reconciled against Notion Pipeline Snapshot 4/17 EOD + Bryan resolutions)_
 
 **Owned (100%)**
 - Aditum — No open roles currently. Maintain relationship.
+- Acadia — Senior Clinical Study Manager. Contact: Ashley Groves. Morrison Oyas submitted 4/9, 8 days silent. Javier Quiroga passed 4/13 (DEAD).
 
 **Team (50% split)**
-- Structure Therapeutics (Aaron/Kathy Maloney, 60% split on new roles) — 7+ open roles. Most active account. MTD: 15 CV submits, 13 1st interviews, 11 2nd interviews.
-  - Sr. Clinical Trial Manager (Contr): Lori Hannan FINAL 3/23 7:30 PM ET with Divya Chari. Offer expected. Shannon Callison submitted 3/2, no movement.
-  - Vendor Oversight Manager: Matt Axt great interview 3/20, advancing to next round ~3/24-25. Kristi O'Rorke 1st interview 3/24.
-  - Contract Vendor Oversight Manager: Matt Axt + Kristi O'Rorke (same candidates as above).
-  - Associate, Clinical Outsourcing (Contr): Candace Workman 1st interview 3/20. Awaiting Aaron's response.
-  - Associate Director, Clinical Outsourcing (Perm): Howard Kohn submitted 3/11.
-  - Senior Manager, Clinical Outsourcing (Contr): Howard Kohn 1st interview 3/24.
-  - Also active: Sr. CRA (major priority - "can't send enough candidates"), Sr. CTA, TMF Associate, GCP Quality, Clinical Supply.
-- IDEAYA (Nicole/Patrick Monteforte, 50%) — 3 active roles.
-  - Sr. Clinical Database Programmer (Contr): **PLACEMENT** — Arpita Rathod verbal acceptance 3/19. Respond to Nubia re: bill rate confirmation.
-  - Sr. Clinical Data Manager (Contr): Bhargavi Setty in FINALS. Deciding between her and one other. She's anxious (emailed 2x on 3/20).
-  - Clinical Operations Regional Lead (Contr): Peter Kim 1st interview 3/2 — 18 days no update. Likely dead.
-  - IDEAYA presenting 3 posters at AACR 2026 (April 17-22, San Diego) — IDE034, IDE574, IDE892. Company advancing Phase 1 studies across broad solid tumor indications.
-- Apogee (Jimmy Yaji) — AD Biostatistics (Perm), 2 openings. Tielin Qin rejected 3/19. Emma Foos screened, submitting. Continue re-sourcing.
-  - Apogee catalyst-rich in 2026: APEX Phase 2 Part A 52-week data expected this month, Part B Q2, Phase 3 initiation 2H 2026. $902.9M cash runway through 2H 2028.
-- Karyopharm (Deryn Fishman) — Medical Director, Clinical Development (Contr). Tony Tang 2nd interview was 3/19 (outcome unknown), another 2nd 3/23. Sergio Arce submitted 3/11, awaiting interview scheduling.
-  - Karyopharm on track for Phase 3 selinexor top-line data mid-2026 (endometrial cancer). Catalyst-rich year.
-- Insmed — Sr Director GRL Gene Therapy ($301K + 27% bonus). No candidates in current pipeline snapshot. Status unclear. Verify with Nicole.
+- Karyopharm (Team — Deryn Fishman/Luke Salter)
+  - Medical Director Clinical Development (Contr) — **PLACED**: Tony Tang started 4/8.
+  - Placement #40705 — Zequn Tang, onboarding.
+  - Contract Medical Director Clinical Development (active): Lee Schacter submitted 4/14 1:35 PM; Ahmed Abdel-Razek submitted 4/14 3:17 PM, warm-closed 4/16 after 4:45 PM call + prep dossier sent; Eliana Grandstaff submitted 4/9, awaiting feedback. Monday: chase Deryn/Luke on all three.
+  - Phase 3 selinexor top-line data mid-2026 (endometrial cancer). Catalyst-rich.
+- IDEAYA (Team — Nicole Leinders/Patrick Monteforte)
+  - Sr. DB Programmer (Contr) — **PLACED**: Arpita Rathod started 4/6.
+  - Clinical Data Manager (Contr) — **STARTS MON 4/20**: Bhargavi Setty. Monica Vado = first-day contact.
+  - AACR 2026 (April 17-22, San Diego) — 3 posters: IDE034, IDE574, IDE892.
+- Structure Therapeutics (Team — Aaron Jay/Kathy Maloney, 60% split on new roles)
+  - Vendor Oversight Mgr (Perm + Contr): Kristi O'Rorke — Aaron Jay Day 3 stall. Monday: chase Aaron. (Matt Axt beat out by Kristi — DEAD.)
+  - Associate Clinical Outsourcing (Contr): Candace Workman waiting on Aaron Jay. Monday: nudge.
+  - Contract Sr. CRA: Richard Speere + Michael Pelayo — references stage, no update 4/17.
+- Sirius Therapeutics (Team — via Nicole Leinders, contact: Heilei/Hailei)
+  - Sr Dir / Head of BD (Contr): Paul Schroeder awaiting Sirius intent-to-proceed. Monday: Heilei/Hailei confirm intent — do NOT schedule yet. (Sergio Davila passed 4/16 — DEAD.)
+- Apogee (Team — Jimmy Yaji/Alison Hardiman)
+  - AD Biostatistics (Perm, 2 openings): sourcing. Internal PDF handoff to Alison complete 4/17.
+  - Catalysts 2026: APEX Phase 2 Part A 52-week data, Part B Q2, Phase 3 initiation 2H 2026. $902.9M runway through 2H 2028.
 
-**Sourcing**
-- Korro Bio — Director CDM. SourceWhale campaign active (Peter Aquino, Todd Chappell). Reactivated from Dead status.
+**Reactivated**
+- Ionis — Director, Safety Conventions & Quality Standards. Baseer Ahmed sourcing, stalled/not responding. Monday: reactivation ping.
+
+**Established Placement (ongoing billing)**
+- Pathalys — Tauqeer Karim MD consultant. Weekly invoicing. Invoice #65 received 4/17 (week of 4/13-4/17). **Out 4/20-4/24 vacation — no timesheet that week.** Nicole likely handling notification.
 
 **Warm Leads**
 - Regeneron — Jeen Liu (he/him), VP Biostats & Data Mgmt. Agencies for roles open 6+ months only. Next reconnect 5/4/26.
 
-**BD Prospects**
-- Puma Biotech — Terms inquiry sent 2/25. Awaiting response.
+**BD Prospects / SourceWhale Active**
+- Nuvation Bio (queue), Arrowhead Pharma, Metagenomi, Gossamer Bio, Rhythm Therapeutics — no replies 4/17.
+- Otsuka — dormant.
+- Puma Biotech — terms inquiry sent 2/25, still awaiting response.
 
-**Dead**
-- Ionis (2/23/26 — filled internally), Xellar (2/26/26 — on hold)
-- Candidates archived 3/20: Francis Richards (Structure - not culture fit), Ping He (Apogee - cut interviewer off), Baodong Xing (Apogee - TA gap), Heather Butters (IDEAYA - passed), Tielin Qin (Apogee - communication issues), unnamed PV candidate (IDEAYA - lied about employment status)
+**Sourcing (status verification needed)**
+- Korro Bio — Director CDM. Not in 4/17 snapshot. Verify campaign outcome.
+
+**Dead / Closed since 3/20**
+- Lori Hannan (Structure CTM — passed), Matt Axt (Structure VOM — beat out by Kristi), Howard Kohn (Structure — withdrew), Sergio Arce (Karyopharm MD — passed), Dih Chen (Karyopharm — not moving forward), Sergio Davila (Sirius BD — passed 4/16), Javier Quiroga (Acadia SCSM — passed 4/13).
+- Insmed Sr Director GRL — removed (not relevant to Bryan).
+- Earlier archives (3/20): Francis Richards, Ping He, Baodong Xing, Heather Butters, Tielin Qin, unnamed PV candidate.
 
 ### Active Candidates — Priority Order
 
 | # | Candidate | Company/Role | Stage | Next Step |
 |---|-----------|-------------|-------|----------|
-| 1 | Arpita Rathod | IDEAYA - Sr. DB Programmer | PLACEMENT (verbal 3/19) | Respond to Nubia re: bill rate. Nicole sent placement confirmation. |
-| 2 | Lori Hannan | Structure - Sr. CTM Contr | FINAL 3/23 7:30 PM ET | Divya Chari final locked. Offer expected if lands. |
-| 3 | Tony Tang | Karyopharm - Medical Director | 2nd was 3/19, another 2nd 3/23 | Verify Friday's outcome with Deryn. |
-| 4 | Bhargavi Setty | IDEAYA - Sr. CDM | FINALS | Await IDEAYA decision. She's anxious. |
-| 5 | Matt Axt | Structure - VOM + Contr VOM | Great interview 3/20 | Lock Tue/Wed next round with Aaron/Kathy. |
-| 6 | Candace Workman | Structure - Assoc Outsourcing Contr | 1st interview 3/20 done | Get Aaron's response. |
-| 7 | Emma Foos | Apogee - AD Biostatistics | Screened, submitting | Submit and continue re-sourcing. |
-| 8 | Howard Kohn | Structure - AD Outsourcing (Perm) + Sr. Mgr (Contr) | Submitted/1st 3/24 | Prep next week. |
-| 9 | Kristi O'Rorke | Structure - Contr VOM | 1st interview 3/24 | Prep next week. |
-| 10 | Sergio Arce | Karyopharm - Medical Director | Submitted 3/11 | Awaiting interview scheduling. |
+| 1 | Bhargavi Setty | IDEAYA - CDM Contr | **STARTS MON 4/20** | Monitor Monica Vado first-day loop. |
+| 2 | Paul Schroeder | Sirius - Head of BD | Awaiting Sirius intent | Mon: Heilei/Hailei confirm intent, then schedule. |
+| 3 | Lee Schacter | Karyopharm - Contract Med Dir | Submitted 4/14 | Mon: chase Deryn/Luke. |
+| 4 | Ahmed Abdel-Razek | Karyopharm - Contract Med Dir | Submitted 4/14; warm-closed 4/16 + prep sent | Mon: chase Deryn/Luke. |
+| 5 | Eliana Grandstaff | Karyopharm - Contract Med Dir | Submitted 4/9; awaiting feedback | Mon: chase Deryn/Luke. |
+| 6 | Kristi O'Rorke | Structure - VOM Perm+Contr | Aaron Jay Day 3 stall | Mon: chase Aaron. |
+| 7 | Candace Workman | Structure - Assoc Outsourcing Contr | Waiting on Aaron Jay | Mon: nudge Aaron. |
+| 8 | Morrison Oyas | Acadia - Sr Clin Study Mgr | Submitted 4/9 (8 days silent) | Mon: chase Ashley Groves. |
+| 9 | Richard Speere | Structure - Contract Sr. CRA | References | No update. |
+| 10 | Michael Pelayo | Structure - Contract Sr. CRA | References | No update. |
 
-### Monday 3/23 Priorities
+**Placed / Onboarding:** Tony Tang (Karyopharm 4/8), Arpita Rathod (IDEAYA 4/6), Zequn Tang (Karyopharm #40705), Bhargavi Setty (IDEAYA 4/20), Tauqeer Karim (Pathalys ongoing).
 
-1. Lori Hannan FINAL with Divya Chari 7:30 PM ET.
-2. Tony Tang 2nd interview. Verify Friday's outcome first.
-3. Candace Workman — get Aaron's response on 1st interview.
-4. Arpita Rathod — PLACEMENT paperwork. Nubia needs bill rate confirmation.
-5. Bhargavi Setty — FINALS decision from IDEAYA.
-6. Matt Axt — lock next round Tue/Wed.
-7. Howard Kohn + Kristi O'Rorke — prep for 3/24 interviews.
-8. Emma Foos — submit to Apogee.
-9. Yuanhua Tang — review Biostatistics Consultant application.
-10. SourceWhale to-dos — Triveni Bio + Celicuty CDM outreach if not completed Friday.
+**New intake (pre-submission):** Chris Galloway (CVs received, Bryan reviewing), Guanying Wang (intake notes sent 4/14, awaiting CV).
+
+### Last Captured Priorities (Monday 4/20 — historical, refresh before acting)
+
+1. Heilei/Hailei @ Sirius — confirm intent to proceed with Paul Schroeder (do NOT schedule yet).
+2. Bhargavi Setty @ IDEAYA — 4/20 start; monitor Monica Vado first-day loop.
+3. Aaron Jay @ Structure — chase Kristi O'Rorke (Day 3 stall) + nudge on Candace Workman.
+4. Deryn/Luke @ Karyopharm — feedback chase on Lee Schacter, Ahmed Abdel-Razek, Eliana Grandstaff.
+5. Ashley Groves @ Acadia — chase Morrison Oyas feedback (8 days silent).
+6. Baseer Ahmed @ Ionis — reactivation ping.
+7. Nicole — PFS/Bus Dev deliverables (5 outstanding, STILL OVERDUE).
+8. Tauqeer Karim — confirm Pathalys notified of 4/20-4/24 vacation (Nicole likely handling).
+9. SourceWhale — 11 Q1 Clinical Talent Pulse Check calls (relationship-building sequence).
 
 ### Active TODO
 
-- [ ] Arpita Rathod placement: Respond to Nubia re: bill rate confirmation (URGENT)
-- [ ] Verify Tony Tang 3/19 2nd interview outcome with Deryn (URGENT)
-- [ ] Insmed Sr Director GRL: Verify status with Nicole — no candidates in snapshot
+- [ ] Nicole PFS/Bus Dev deliverables — 5 outstanding, STILL OVERDUE (URGENT)
+- [ ] Korro Bio Director CDM: Status verification (not in 4/17 snapshot)
+- [ ] Puma Biotech: Confirm terms inquiry response (sent 2/25)
 - [ ] Regeneron: Monitor for roles open 6+ months. Next reconnect 5/4/26.
-- [ ] Puma Biotech: Confirm terms inquiry response.
-- [ ] Korro Bio Director CDM: Monitor SourceWhale campaign results.
-- [ ] Graph API -> Make.com EOD sweep: Build scenario this weekend. OAuth connection is the only new piece.
+- [ ] Graph API -> Make.com EOD sweep: Build scenario. OAuth is only new piece.
 - [ ] Deploy program.md to Obsidian vault (replacing 8 separate files).
 - [ ] Voice dump -> Make.com webhook -> Notion intake pipeline (backlog).
 - [ ] GQR machine RAM upgrade ($150 fix).
-- [ ] Verify Job Alerts Notion data source ID.
 - [ ] Activate Codex signal automation stack.
-- [ ] Build interview prep skill.
 - [ ] Build RecruitRx drafting skill.
 - [ ] Content pipeline consolidation (reduce tool chain).
+- [ ] Wire EOD sweep / pipeline-sync skills to write back into program.md §9 automatically (§9 drifted 4 weeks despite weekly cadence — process gap).
 
 ---
 
 ## VERSION NOTES
 
 This file replaces: USER.md, TOOLS.md, SOUL.md, IDENTITY.md, AGENTS.md, HEARTBEAT.md, MEMORY.md (operational content only).
+
+**V1.3 (2026-05-05):** Synced structural improvements from global `~/.claude/CLAUDE.md` V1.3 — Quick Nav block, Skills Inventory subsection, MCP servers added to Connected Tools (Notion/Context7/Playwright/Cursor IDE Browser/Cursor App Control), em dash exception note clarified for internal docs. Section 9 replaced with 4/17 Notion snapshot reconciliation: Tony Tang placed 4/8 (Karyopharm), Arpita Rathod placed 4/6 (IDEAYA), Bhargavi Setty starting 4/20 (IDEAYA), Sirius Therapeutics added as new team account, multiple candidates moved to DEAD. Section 9 still requires `eod-sweep`/`pipeline-sync` refresh — project is now structurally aligned with global but Section 9 currency lags ~17 days.
 
 **V1.1 (2026-03-21):** Section 9 refreshed from Friday 3/20 Active Pipeline Snapshot (Notion), Tuesday 3/17 Structure recruiting update, Monday 3/16 team meeting notes, Google Drive pipeline-summary.md, and web intelligence on active accounts. Korro Bio reactivated. IDEAYA placement (Arpita Rathod) added. Candidate priority table and Monday 3/23 priorities added. Active TODO expanded with infrastructure backlog items from earlier conversation.
 

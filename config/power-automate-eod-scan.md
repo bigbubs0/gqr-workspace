@@ -8,7 +8,7 @@ GQR's Microsoft 365 admin has not authorized the Make.com OAuth app. Power Autom
 
 ## Webhook URL
 ```
-https://hook.us2.make.com/3qkyygxjc6163aup23anr661py7u3ut1
+${MAKE_EOD_INBOX_WEBHOOK_URL}
 ```
 
 ## Flow Setup (Step by Step)
@@ -92,7 +92,7 @@ https://hook.us2.make.com/3qkyygxjc6163aup23anr661py7u3ut1
 
 ### Step 11: HTTP - Send to Make.com Webhook
 - **Method:** POST
-- **URI:** `https://hook.us2.make.com/3qkyygxjc6163aup23anr661py7u3ut1`
+- **URI:** Use the private value from `MAKE_EOD_INBOX_WEBHOOK_URL`.
 - **Headers:**
   - Content-Type: application/json
 - **Body:**
@@ -115,6 +115,6 @@ After building the flow:
 3. Verify data appears on Notion EOD Scan Output page and in Google Drive
 
 ## Maintenance
-- Webhook URL is hardcoded. If the Make.com webhook is recreated, update Step 11.
+- Keep the webhook URL in a local secret store, not in Git. If the Make.com webhook is recreated, update the private `MAKE_EOD_INBOX_WEBHOOK_URL` value.
 - Flow runs under your Microsoft 365 credentials. No admin needed.
 - If your GQR password changes, Power Automate may need re-authentication.

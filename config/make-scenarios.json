@@ -15,7 +15,7 @@
       "description": "EOD sweep: Claude Code scheduled task reads Outlook Web via browser automation at 5:30 PM ET, formats email data, POSTs to Make.com webhook. Make.com pushes to Notion EOD Scan Output page + Google Drive.",
       "schedule": "webhook (triggered by Claude Code scheduled task 'eod-email-scan' weekdays 17:30)",
       "webhook_id": 2058245,
-      "webhook_url": "https://hook.us2.make.com/3qkyygxjc6163aup23anr661py7u3ut1",
+      "webhook_env_var": "MAKE_EOD_INBOX_WEBHOOK_URL",
       "note": "Power Automate blocked (Wynden Stark LLC env lacks Office 365 Outlook + HTTP connectors). Make.com blocked (no Microsoft 365 OAuth admin). Solution: Claude Code browser automation feeds the webhook."
     },
     "ai_inbox_classifier": {

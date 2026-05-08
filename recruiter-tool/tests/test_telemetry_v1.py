@@ -295,7 +295,8 @@ class TelemetryV1Tests(unittest.TestCase):
 
         remaining_download = self.client.get(f"/api/attachment/{second_attachment_id}/download")
         self.assertEqual(remaining_download.status_code, 200)
-        self.assertEqual(remaining_download.data, b"second cv")
+        self.assertEqual(remaining_download.get_data(), b"second cv")
+        remaining_download.close()
 
     def test_concurrent_span_writes_remain_valid_ndjson(self):
         def worker(index: int) -> None:

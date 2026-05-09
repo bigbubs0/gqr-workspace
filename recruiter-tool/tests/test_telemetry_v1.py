@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib
+import io
 import json
 import os
 import sys
@@ -252,6 +253,50 @@ class TelemetryV1Tests(unittest.TestCase):
         self.assertIn("X-Pipeline-Run-Id", response.headers)
         summaries = self._telemetry_lines("run-summaries.ndjson")
         self.assertTrue(any(summary["route"] == "/api/search" for summary in summaries))
+
+    def test_duplicate_attachment_filenames_do_not_overwrite_or_share_disk_path(self):
+        candidate_id = self.database.save_candidate(
+            {
+                "name": "Jane Doe",
+                "current_company": "Acme Bio",
+                "current_title": "Director",
+                "open_to_relocation": False,
+            }
+        )
+
+        first_response = self.client.post(
+            f"/api/candidate/{candidate_id}/upload",
+            data={"file": (io.BytesIO(b"first cv"), "CV.pdf"), "description": "first"},
+            content_type="multipart/form-data",
+        )
+        second_response = self.client.post(
+            f"/api/candidate/{candidate_id}/upload",
+            data={"file": (io.BytesIO(b"second cv"), "CV.pdf"), "description": "second"},
+            content_type="multipart/form-data",
+        )
+
+        self.assertEqual(first_response.status_code, 200)
+        self.assertEqual(second_response.status_code, 200)
+
+        attachments = self.app_module.get_attachments(candidate_id)
+        self.assertEqual(len(attachments), 2)
+        self.assertEqual({attachment["file_name"] for attachment in attachments}, {"CV.pdf"})
+
+        paths = {attachment["file_path"] for attachment in attachments}
+        self.assertEqual(len(paths), 2)
+        for path in paths:
+            self.assertTrue(Path(path).exists())
+
+        first_attachment_id = first_response.get_json()["attachment_id"]
+        second_attachment_id = second_response.get_json()["attachment_id"]
+
+        delete_response = self.client.delete(f"/api/attachment/{first_attachment_id}")
+        self.assertEqual(delete_response.status_code, 200)
+
+        remaining_download = self.client.get(f"/api/attachment/{second_attachment_id}/download")
+        self.assertEqual(remaining_download.status_code, 200)
+        self.assertEqual(remaining_download.get_data(), b"second cv")
+        remaining_download.close()
 
     def test_concurrent_span_writes_remain_valid_ndjson(self):
         def worker(index: int) -> None:

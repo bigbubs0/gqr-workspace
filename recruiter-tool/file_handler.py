@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import shutil
+import uuid
 from werkzeug.utils import secure_filename
 from database import DB_PATH
 
@@ -14,6 +15,12 @@ def init_upload_folder():
 def allowed_file(filename):
     """Check if file extension is allowed"""
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def unique_storage_filename(filename):
+    """Return a collision-resistant filename while preserving the readable stem."""
+    stem, ext = os.path.splitext(filename)
+    suffix = uuid.uuid4().hex[:12]
+    return f"{stem}_{suffix}{ext}"
 
 def save_attachment(candidate_id, file, description=''):
     """Save a file attachment for a candidate"""
@@ -31,7 +38,8 @@ def save_attachment(candidate_id, file, description=''):
 
     # Secure the filename
     filename = secure_filename(file.filename)
-    file_path = os.path.join(candidate_folder, filename)
+    storage_filename = unique_storage_filename(filename)
+    file_path = os.path.join(candidate_folder, storage_filename)
 
     # Save the file
     file.save(file_path)

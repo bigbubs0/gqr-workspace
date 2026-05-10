@@ -1,0 +1,17 @@
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = [
+    "recruiter-tool/tests",
+    "autoresearch/tests",
+    "tools/tests",
+]
+pythonpath = [
+    "recruiter-tool",
+    "recruiter-tool/tests",
+    "autoresearch",
+    "autoresearch/evals",
+    "tools",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]

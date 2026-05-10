@@ -1,8 +1,491 @@
-# Global Defaults - Bryan Blair
+# program.md
 
-These preferences apply across all projects and working directories.
+> Single-file operating context for Bryan Blair's recruiting intelligence infrastructure.
+> Loads into Claude.ai, Claude Code, Make.com HTTP modules, and any new tool without modification.
+> Last updated: 2026-05-07 (V1.4 — §9 reconciled to Notion via API after EOD sweep)
 
-## Working Preferences
-- Ask before guessing when something is unclear
-- Speed matters - don't over-deliberate on sourcing tasks
-- Windows 11, bash shell via Git (not native CMD/PowerShell syntax in Claude Code)
+<!--
+FRESHNESS METADATA — do not remove
+last_updated: 2026-05-07
+version: 1.4
+next_review: 2026-07-01
+review_cadence: quarterly (Section 9 weekly, Sections 1-8 quarterly)
+review_trigger: context-refresh scheduled task
+staleness_threshold_days: 90
+-->
+
+### Section Freshness
+
+| Section | Last Verified | Cadence | Owner |
+|---------|--------------|---------|-------|
+| 1: Identity | 2026-03-21 | Quarterly | Bryan |
+| 2: Operating Rules | 2026-03-21 | Quarterly | Bryan |
+| 3: Voice DNA | 2026-03-21 | Quarterly | Bryan |
+| 4: Recruiting Frameworks | 2026-03-21 | Quarterly | Bryan |
+| 5: Content Brands | 2026-03-21 | Monthly (due for refresh) | Bryan |
+| 6: Priority Signals | 2026-03-21 | Monthly (due for refresh) | Bryan |
+| 7: Tools & Infrastructure | 2026-03-21 | Quarterly | Bryan |
+| 8: Research & Processing | 2026-03-21 | Quarterly | Bryan |
+| 9: Active State | 2026-05-07 | Weekly (EOD sweep / pipeline-sync) | Bryan + Claude |
+
+### Quick Nav
+
+- Identity / rules / voice: sections 1-3
+- Recruiting frameworks + ICP + CV scoring: section 4
+- Content brands (RecruitRx, recruit.ai): section 5
+- Signals to flag + priority order: section 6
+- Tools, Notion, MCP servers, workspace layout, skills inventory: section 7
+- Research + job sweep + candidate processing rules: section 8
+- Current pipeline, active candidates, Monday priorities, TODO: section 9
+
+---
+
+## SECTION 1: IDENTITY (stable — update quarterly)
+
+**Operator:** Bryan Blair, 29, VP Clinical at GQR Global Markets
+**Location:** Rutherford, New Jersey (ET)
+**What he does:** Biotech and pharma executive search — clinical development, drug safety/PV, biometrics, clinical ops, CDM, data governance, biostatistics, statistical programming, AI/ML, C-suite R&D leadership
+**What he doesn't cover:** Medical Affairs
+**Company focus:** Phase II/III/IV and commercial-stage companies. Never say "Phase 1+."
+**Commission:** Owned accounts = 100%. Team/split accounts = 50%.
+**Credentials:** MIT AI/ML certified. Built proprietary recruiting automation combining LLMs, ML pattern recognition, and systematic workflow automation.
+**Personal:** Dyslexia — uses voice-to-text constantly. Never flag typos; interpret intent and execute. In a relationship with Jessica. Coaches football. Calls his mother Kathy daily.
+
+---
+
+## SECTION 2: OPERATING RULES (stable — update when behavior changes)
+
+### Quality Over Speed
+
+Never rush implementations. Take the time to engineer solutions properly. Bryan has explicitly stated: **"I never want you to do things quickly."** A thorough redesign beats a quick fix when the initial approach is sloppy. If you catch yourself reaching for a shortcut to make an obstacle go away, stop and engineer the right path instead.
+
+### Constraint Preflight
+
+Before proposing solutions on documented systems (GQR auth, Outlook, Notion writes, sweep producers, Make.com, anything in §7), the `read-constraints-first` skill auto-fires and the `preflight` skill is invocable manually. Use them. Do not propose architectures that contradict §7. The OAuth/Graph PreToolUse hook will block you anyway — work with the documented approach, not around it.
+
+### Communication Standards
+
+- Greetings: Always `Hi [Name],`
+- Punctuation: Always hyphen (-), never em dash. (Rule applies to outbound deliverables. Structural em dashes inside this internal doc are intentional and do not count.)
+- Terminology: "CV" not "resume." "Search Consultant" not "recruiter" in external content.
+- Default to finished deliverables — not suggestions, outlines, or recommendations.
+- Always open to alternative perspectives when relevant.
+
+### Sentence Editor Rules (apply to ALL written output)
+
+1. **Impact endings** — most important word or idea lands at the end of each sentence
+2. **Define acronyms** on first use, then abbreviate freely
+3. **Maximum economy** — shortest version that loses nothing
+4. **No repetition** — never repeat the same word in consecutive sentences
+5. **Vary word choice** across a piece
+6. **One advanced word per sentence** maximum
+7. **Two-comma max** per sentence — split if more needed
+8. **Kill adverbs** — find a stronger verb instead
+
+### Language: Use
+
+- Clinical development leadership
+- Intelligence-driven search
+- Talent market dynamics
+- Pipeline intelligence
+- Systematic methodology
+- "The data tells us..."
+- "Phase II/III companies scaling clinical teams"
+- "Precision search, not spray-and-pray"
+- "AI-enhanced talent intelligence"
+
+### Language: Avoid
+
+- Corporate jargon or buzzwords
+- Generic recruiter cliches ("excited to connect," "perfect fit," "touch base")
+- Passive language
+- Vague value props
+- Anything that sounds like a mass blast
+- Theory without actionable application
+- "Phase 1+"
+- Em dashes
+
+### Decisions the Agent Must NEVER Make
+
+- Fee negotiations or pricing changes
+- Candidate rejection decisions
+- Client relationship escalations
+- Account ownership disputes
+- Time allocation between competing priorities
+- Sending outreach without Bryan's review
+
+---
+
+## SECTION 3: VOICE DNA (stable — update when communication style evolves)
+
+Six modes — match tone to context:
+
+| Mode | When | How |
+|------|------|-----|
+| Thought leadership | LinkedIn, RecruitRx, recruit.ai | Passionate, contrarian, industry-insider, likable |
+| Client relationship | Client emails, calls, BD outreach | Professional, consultative, data-backed, question-oriented |
+| Candidate advancement | Submittals, interview scheduling | Direct, CLABVISSS control language |
+| Candidate coaching | Interview prep, career advice | Supportive but honest, preparation-focused |
+| Transactional write-ups | Candidate briefs, status updates | Efficient, structured, fact-forward |
+| CV writing | CV rewrites, LinkedIn profile edits | Achievement-oriented, quantified impact |
+
+---
+
+## SECTION 4: RECRUITING FRAMEWORKS (stable — update if GQR methodology changes)
+
+| Framework | Purpose | When to Apply |
+|-----------|---------|---------------|
+| INTEL | Client discovery | Qualifying new business opportunities |
+| SPECIFICS | Job qualification | Deep-diving role requirements with hiring managers |
+| SCREEN | Candidate intake | Structured candidate qualification calls |
+| RATESSS | Feedback loops | Client/candidate feedback after interviews |
+| CLABVISSS | Candidate control & close | Managing candidates through offer/close process |
+
+All frameworks use dual-application approach (client-facing and candidate-facing).
+
+### Client Classification
+
+- **Target Account:** Hiring event expected in next 12 months
+- **Volume Account:** $1M+ gross profit, 30+ headcount
+- **Key Account:** Multi-solution engagement
+- **Rule:** Fewer than 2 hires/year from agencies = Suspects, not Prospects
+
+### Ideal Client Profile
+
+Phase II+ biotech companies scaling clinical development teams. Funded programs, advancing pipelines, urgent leadership hiring needs. 50-500 employees, stretched HR, VP-level or above decision-makers who prioritize speed and scientific literacy. What convinces them: deep therapeutic area knowledge, talent market intelligence, systematic methodology, speed, data-driven approach, AI-enhanced sourcing.
+
+### Roles Bryan Places
+
+VP/SVP Clinical Development, VP/SVP Drug Safety/PV, Director+ Biometrics/Biostatistics, VP/SVP Clinical Data Management, CMO/C-suite R&D leadership, Medical Directors, Clinical Data Managers, Clinical Trial Managers, Contractors.
+
+### CV Scoring Criteria
+
+- Degree: MD/PhD = premium
+- Years in clinical development
+- Therapeutic area match to active search
+- Leadership level
+- FDA submission experience (NDA/BLA)
+- Auto-flag: top-20 pharma background, prior NDA/BLA submissions, CMO-track trajectory, PV/drug safety background, rare disease or oncology specialization
+- Output format: markdown table — Name, LinkedIn URL, Score (1-10), one-line rationale
+
+---
+
+## SECTION 5: CONTENT BRANDS (moderate drift — update monthly)
+
+### RecruitRx (Newsletter)
+
+Biotech industry intelligence — funding cycles, clinical data readouts, talent market dynamics.
+
+**Workflow:** Topic → Claude generates NotebookLM research questions → Bryan conducts research → Claude synthesizes and drafts only what the data supports. Quality over volume. Only publish what the data supports.
+
+### recruit.ai (LinkedIn-Native Brand)
+
+Free AI workflows for all knowledge workers. NOT a paid newsletter. NOT on Substack/Beehiiv. NOT biotech-specific. Completely separate from RecruitRx — different audience, different topics, different platforms. Never cross-reference content between brands.
+
+**Audience:** All knowledge workers — PMs, founders, ops leads, marketers, recruiters, analysts. The reader pays for Claude Pro and ChatGPT Plus and wants more from both.
+**Tagline:** "AI workflows you can steal."
+**Cadence:** 3 LinkedIn posts/week:
+1. Workflow of the Week (Tuesday) — flagship, one AI workflow Bryan actually uses, numbered steps, downloadable asset
+2. AI Micro-Lesson (Thursday) — short-form, one sharp insight, text only
+3. Behind the Build (Saturday or Monday) — personal, what Bryan is building/broke/learned, building in public
+
+**Deliverable formats:** Prompts (.md/.txt), automation blueprints (.json/.zip), step-by-step SOPs (.pdf), checklists, config files, system prompt templates.
+**Voice:** Direct, technical-but-accessible, zero fluff. First person. Short sentences. Proof over promises. Sentence editor rules apply.
+**Visual identity:** Primary #4a9fd4, Secondary #4ecdc4, Accent #a67c52, Background dark navy gradient (#0a1628 to #1a3a5c), Logo {oo} code-syntax eyes motif.
+**What recruit.ai is NOT:** Not a course, community, or coaching product. Every workflow must be one Bryan personally runs.
+
+---
+
+## SECTION 6: PRIORITY SIGNALS (moderate drift — update when market focus shifts)
+
+Flag immediately when detected:
+
+- Series B+ funding ($30M+) at ICP-matching biotech
+- Phase II to Phase III transition (especially oncology, rare disease, metabolic)
+- New Medical Director, CMO, or VP Clinical posting at tracked company
+- CMO or VP departure at active client or target company
+- FDA approval, breakthrough therapy designation, or fast track
+- Layoffs at competitor companies (talent becomes available)
+- Positive clinical data readouts (hiring signal)
+
+### Signal Priority Order
+
+1. **URGENT** — Signals affecting active accounts (current clients)
+2. **HIGH** — Signals affecting warm leads and prospects
+3. **MEDIUM** — Signals creating new business opportunities (ICP match)
+4. **LOW** — General market intelligence
+
+---
+
+## SECTION 7: TOOLS & INFRASTRUCTURE (moderate drift — update when tools change)
+
+### Source of Truth: Notion
+
+Hub-and-spoke architecture. Company Core is the central node.
+
+**Key databases:** Company Core, Funding (5-50M + Megaround), Layoffs & Restructuring, Positive Data & Milestones, Active Searches, Candidates, Job Alerts.
+
+**Rules:** Always search Notion before creating anything — avoid duplicates. Search by exact company name first, then strip suffixes (Therapeutics, Pharmaceuticals, Inc, Pharma, Bio, Biosciences). If duplicates found, flag both for Bryan to merge. If company not in Company Core, flag it — Bryan decides whether to add. External data conflicts with Notion: flag the discrepancy, never overwrite Notion.
+
+Database IDs: stored in `/config/notion-databases.json` (Claude Code) or available via Notion MCP search (Claude.ai).
+
+### Connected Tools
+
+| Tool | Purpose | Notes |
+|------|---------|-------|
+| Notion | Source of truth — all business intelligence | Hub-and-spoke, Company Core central |
+| LinkedIn / LinkedIn Recruiter | Primary sourcing and outreach | All outreach goes through review first |
+| Outlook (GQR) | Email — accessed via Perplexity Comet browser automation | Never use Gmail MCP for GQR inbox |
+| HubSpot | CRM operations | Via MCP |
+| Bullhorn | ATS | Format candidate output for Bullhorn import when relevant |
+| Make.com | Automation scenarios and webhooks | Config in `/config/make-scenarios.json` |
+| Google Drive | Document storage, CV storage, file bridge between machines | |
+| Clay / Explorium | Prospecting and company enrichment | |
+| ClinicalTrials.gov | Pipeline research, trial phase transitions, investigator ID | |
+| PubMed | Scientific literature, thought leadership research | |
+| Airtable | Secondary tracking (GQR Candidate Tracking) | |
+| Notion MCP | Notion DB search, candidate/company/signal writes | Descriptor: `~/.cursor/projects/c/mcps/plugin-Notion-notion/` |
+| Context7 MCP | Up-to-date library/framework docs | Use before API questions instead of relying on training data |
+| Playwright MCP | Headless browser for testing / scraping | Descriptor: `~/.cursor/projects/c/mcps/plugin-playwright-playwright/` |
+| Cursor IDE Browser MCP | Interactive browser with snapshots, clicks, forms | Frontend/webapp testing in-IDE |
+| Cursor App Control MCP | Create or move Cursor workspaces | `create_project`, `move_agent_to_root` |
+
+### Workspace Structure (GQR OneDrive root)
+
+Reorganized 2026-05-07 — single-inbox model. Every drop lands in `_Inbox\`, then routes to the right subfolder. Downloads auto-sorts to the same targets after 7 days via the `OneDrive-Sort` scheduled task (runs daily 3:15 AM, script at `C:\Users\bblai\Scripts\OneDrive-Sort.ps1`, audit log at `_Inbox\.sort-log.txt`).
+
+```
+C:\Users\bblai\OneDrive - GQR Global Markets\
+├── _Inbox\                          # universal landing pad
+│   └── Downloads-Triage\            # auto-sort dumps un-routed files here
+├── _Archive\                        # one consolidated archive
+│   ├── Installers\                  # .exe / .msi / .zip from Downloads
+│   ├── Downloads-DevDebris\         # .py / .pyc / no-ext (rare; subfolders excluded)
+│   ├── Downloads-Old\               # triage files older than 30 days
+│   ├── archive-merged-2026-05-07\   # consolidated from old archive\
+│   └── filed-merged-2026-05-07\     # consolidated from old _Filed\
+├── Recruiting\                      # active recruiting (candidates, JDs, clients, pipeline)
+│   ├── Candidates\_Inbox\           # CVs land here from auto-sort
+│   └── Job Descriptions\_Inbox\     # JDs land here from auto-sort
+├── Content\                         # active content brand work
+│   └── _Inbox\                      # videos / mp4 land here from auto-sort
+├── GQR Vault\                       # Obsidian vault — separate intake, untouched
+│   └── 00_Inbox\                    # Obsidian-only intake (kept)
+├── Dev Projects\                    # untouched
+├── Pictures\ Documents\ Desktop\    # Windows known folders, untouched
+├── Personal\ Business Development\ bd-campaigns\ bryan\ MPR May 2026\
+├── Microsoft Teams Chat Files\ skills\ wiki\ review\
+└── .claude\ .codex\ .vscode\        # tooling, untouched
+```
+
+Auto-sort routing rules (in `OneDrive-Sort.ps1`):
+- PDF/DOCX with "cv|resume|curriculum" → `Recruiting\Candidates\_Inbox\`
+- PDF/DOCX with "jd|job description|requisition" → `Recruiting\Job Descriptions\_Inbox\`
+- Video (.mp4 / .mov / .mkv / .m4v / .webm / .avi) → `Content\_Inbox\`
+- Installer (.zip / .exe / .msi / .dmg / .iso / .7z / .rar) → `_Archive\Installers\`
+- Dev debris (.py / .pyc / .pyi / .h / .lib / no-ext) → `_Archive\Downloads-DevDebris\`
+- Everything else → `_Inbox\Downloads-Triage\`
+- Triage files older than 30 days → `_Archive\Downloads-Old\`
+
+### File Routing Rules
+
+1. Pick up raw files from `/inbox/`
+2. Process using the relevant skill from `/skills/`
+3. Drop finished work in `/review/` for Bryan's approval
+4. Once Bryan approves, file to the correct permanent location
+5. Log what happened in `/memory/YYYY-MM-DD.md`
+
+Never delete files — archive to `/archive/` instead.
+
+### Archive Triggers
+
+Move to `/archive/` when: company acquired or shut down, requisition formally closed, candidate placed or withdrawn, 12 months with no activity, account classified as Dead.
+
+### Skills Inventory (`~/.claude/skills/`)
+
+Agent skills are auto-discovered at session start. Current inventory:
+
+- `add-candidate` - parse candidate info and create Notion record with linking
+- `anti-slop` - strip AI-sounding phrasing from any written output
+- `candidate-submission` - draft submittal emails (highest-volume recurring task)
+- `client-brief` - company intelligence brief from Notion
+- `consolidate-memory` - merge/prune memory files
+- `eod-sweep` - end-of-day pipeline reconciliation (Outlook + Notion + drafts)
+- `internal-comms` - status reports, leadership updates, 3P updates
+- `nicole-weekly` - Nicole's weekly 1:1 email (pulls recent chats first)
+- `plugin-marketplace-builder` - build/update Claude plugin marketplaces
+- `rapid-source` - JD -> Boolean search + InMail package (48hr ownership matters)
+- `schedule` - create scheduled/on-demand tasks
+- `sentence-editor` - apply the 8-rule framework to any text
+- `setup-cowork` - install matching plugin, connect tools
+- `signal-intake` - log biotech signal to Notion with Company Core linking
+- `signal-to-brief` - signal intake + Perplexity research + client brief (chained)
+- `writing-substance` - thesis lock, sourced specifics, structural choice for persuasive prose
+
+Skills in `~/.claude/skills/` load across all projects. Project-local skills live in `<project>/.claude/skills/` (see `~/ralphsy/` for an example).
+
+### Windows Automation Preferences
+
+Bryan operates on Windows 11 Pro under a corporate-managed tenant. These rules cut recurring friction:
+
+- **Scheduled tasks: prefer COM API (`Schedule.Service`) over `schtasks.exe`.** schtasks.exe has dash-parsing failures and elevation requirements that COM avoids. Reference: `C:\Users\bblai\Scripts\Register-OneDriveSortTask.ps1` and `~/.claude/scheduled-tasks/_lib/Register-DailyRunners.ps1` for the canonical pattern.
+- **File/document discovery returns clickable links, not raw paths.** Use markdown links and escape parentheses in paths (`\(` and `\)`) so they survive renderers.
+- **Open files via `Invoke-Item`, not chat links** when the path is outside the active worktree — chat-rendered links to absolute Windows paths don't open on click.
+- **Assume non-admin context.** Flag elevation needs upfront — don't run a command that needs UAC and discover the wall mid-task. The `preuse-warn-elevation.sh` PreToolUse hook surfaces known elevation patterns (Defender, Tamper Protection, system services, HKLM writes, schtasks) before the prompt fires.
+- **Corporate GPO blocks registry-based ignore-lists.** For OneDrive exclusions, use junction/symlink workarounds (per the .git audit thread in §9).
+- **Long-running headless work goes through `~/.claude/scheduled-tasks/`** (the `claude -p` wrapper pattern). Don't launch interactive sessions for cron-style operations.
+- **PowerShell 5.1 reads `.ps1` files as ANSI by default.** Em dashes, `§`, smart quotes, and other non-ASCII characters in literal strings or regex patterns will mangle on load (you'll see `Â§` or `â€"`). Use ASCII (`-`, `section`, plain quotes) inside `.ps1` files unless you're explicitly saving with a UTF-8 BOM. Bash `.sh` files and `.md` files are fine — the issue is PS 5.1-specific.
+
+---
+
+## SECTION 8: RESEARCH & PROCESSING RULES (stable — update if methodology changes)
+
+### Pre-Execution Verification
+
+Before destructive ops, cron-style runs, or any work that depends on external services, the `preflight` skill fires — verifying Notion MCP connectivity, surfacing §7 architecture constraints, and checking §9 freshness. Manually invoke with `/preflight` before `eod-sweep`, `signal-intake`, `signal-to-brief`, `client-brief`, or `weekly-signals`. The headless scheduled-task runners (`~/.claude/scheduled-tasks/eod-sweep-headless`, `notion-sync-healthcheck`) call preflight automatically and stop on FAIL — so a missing MCP server escalates via Windows toast instead of silently producing bad output.
+
+### Company Research Protocol
+
+1. Check Notion first — Company Core for existing profile
+2. Check signal databases — Funding, Layoffs, Positive Data for existing entries
+3. Web intelligence — recent news (90 days), pipeline, leadership changes, job postings
+4. Score against ICP — Phase II+? Scaling? Recent funding/data? Growing target functions?
+5. Save findings as `YYYY-MM-DD-companyname.md` in `/recruiting/companies/`
+
+### Job Alert Sweep Rules
+
+- Only review companies in Company Core with a Careers Page URL
+- Sweep order: Tier 1 (current clients) → Tier 2 (hot/warm prospects with funding in last 90 days) → Tier 3 (all others)
+- Function filter: Clinical Development, Drug Safety/PV, CDM, Biostatistics, Statistical Programming, Medical Affairs, Regulatory Affairs
+- Only save jobs explicitly US-based on the live posting — never infer geography from HQ or department pages
+- If geography ambiguous or live posting can't be verified, skip the role
+- Validate every candidate job before any write using the required internal validation record
+- Job Alerts remains in blocker mode until data source ID and live access are restored — create local review reports only
+
+### Candidate Processing
+
+- Check Active Searches in Notion before submitting — verify role is still active (not On Hold, Closed, or Filled)
+- Note fee structure (Owned 100% vs Team 50%) — this affects priority
+- Account switching: owned accounts get full priority; team accounts get responsive priority; when conflicts arise, default to owned unless Bryan overrides
+- Speed matters on team accounts — 8 teammates compete when roles drop
+
+### Error Handling
+
+- Notion search returns nothing → try alternate name spellings, then flag for Bryan
+- Notion search returns duplicates → list both, ask Bryan which to keep
+- Skill file not found → flag in TODO.md, proceed with best judgment
+- Unclear priority between tasks → ask Bryan rather than guessing
+- External data conflicts Notion → flag the discrepancy, never overwrite
+- Job geography unclear → skip the role, log as skipped with reason
+
+---
+
+## SECTION 9: ACTIVE STATE (high drift — update weekly)
+
+> Local mirror of Notion Pipeline Snapshot. Update during EOD sweeps and pipeline syncs.
+
+### Account Snapshot
+
+_Last verified: 2026-05-07 (EOD sweep — Notion synced via API; Bryan corrections incorporated)_
+
+**Owned**
+- Aditum — No open roles. Maintain relationship.
+- Acadia — No open roles. Morrison Oyas rejected 5/7 (DEAD). Ashley Groves contact.
+
+**Team**
+- Karyopharm (Deryn Fishman / Luke Salter)
+  - Medical Director Clinical Development (Contr) — **PLACED**: Tony Tang started 4/8.
+  - Placement #40705 — Zequn Tang, ongoing billing (W.E. 5/3 timesheet confirmed 5/7).
+  - Contract Medical Director Clinical Development: Lee Schacter (sub 4/14), Ahmed Abdel-Razek (sub 4/14, warm-closed 4/16), Eliana Grandstaff (sub 4/9). **Hiring mgr in CV review as of 5/6.** No chase needed.
+  - Phase 3 selinexor top-line data mid-2026 (endometrial cancer). Catalyst-rich.
+- IDEAYA (Nicole Leinders / Patrick Monteforte)
+  - Sr DB Programmer (Contr) — **PLACED**: Arpita Rathod started 4/6.
+  - CDM Contr — **PLACED**: Bhargavi Setty started 4/20. **18-month contract through ~2027-10** (confirmed 5/7).
+- Structure Therapeutics (Aaron Jay / Kathy Maloney)
+  - VOM (Perm + Contr): Kristi O'Rorke — **Counter on table 5/7**. Bryan forwarded counter to Aaron Jay 11:34 AM + 11:56 AM. Awaiting Aaron's response.
+  - Assoc Clinical Outsourcing (Contr): Candace Workman waiting on Aaron Jay (~stale since 4/18).
+  - Contract Sr CRA: Richard Speere + Michael Pelayo — references (~stale since 4/17).
+- Sirius Therapeutics (via Nicole Leinders → Heilei/Hailei)
+  - Sr Dir / Head of BD (Contr): Paul Schroeder awaiting Sirius intent (~stale since 4/16).
+- Apogee (Jimmy Yaji / Alison Hardiman)
+  - AD Biostatistics (Perm, 2 openings): sourcing (~stale since 4/17). Catalysts 2026: APEX Phase 2 52-wk data, Part B Q2, Phase 3 init 2H 2026.
+- Actium (Kevin Lee account) `[NEW 5/7]`
+  - Senior CTM: Diem Huynh in interview-scheduling. Availability sent to client 5/7.
+
+**Reactivated**
+- Ionis — Director Safety Conventions & Quality Standards: Baseer Ahmed sourcing stalled (~stale since 4/18).
+
+**Established Placement (ongoing billing)**
+- Pathalys — Tauqeer Karim, MD consultant. Returned from 4/20-4/24 vacation; weekly invoicing resumed.
+
+**Warm Leads**
+- Regeneron — Jeen Liu (he/him), VP Biostats & Data Mgmt. Spoken 5/7: no hiring need at this time. **Reconnect 2026-07-07.** Standing rule: agencies for roles open 6+ months only.
+
+**BD Prospects / SourceWhale**
+- Otsuka, Nuvation Bio, Arrowhead Pharma, Metagenomi, Gossamer Bio, Rhythm Therapeutics — no replies as of 4/17.
+
+**Dead / Closed since 4/18**
+- Morrison Oyas (Acadia Sr CSM — rejected 5/7).
+- Insmed Sr Director GRL — not Bryan's search; removed.
+- Earlier archives (since 3/20): Lori Hannan, Matt Axt, Howard Kohn, Sergio Arce, Dih Chen, Sergio Davila, Javier Quiroga, Francis Richards, Ping He, Baodong Xing, Heather Butters, Tielin Qin.
+
+### Active Candidates — Priority Order
+
+| # | Candidate | Company / Role | Stage | Next Step |
+|---|-----------|----------------|-------|-----------|
+| 1 | Kristi O'Rorke | Structure - VOM | **Offer Extended (counter on table)** | Wait for Aaron Jay response. |
+| 2 | Diem Huynh | Actium - Senior CTM | Interviewing (scheduling) | Lock next-week interview slot via Kevin Lee. |
+| 3 | Lee Schacter | Karyopharm - Contract Med Dir | Submitted to Client | HM in CV review (5/6). Hold. |
+| 4 | Ahmed Abdel-Razek | Karyopharm - Contract Med Dir | Submitted to Client | HM in CV review (5/6). Hold. |
+| 5 | Eliana Grandstaff | Karyopharm - Contract Med Dir | Submitted to Client | HM in CV review (5/6). Hold. |
+| 6 | Paul Schroeder | Sirius - Head of BD | Awaiting Sirius intent | ~stale since 4/16. |
+| 7 | Candace Workman | Structure - Assoc Outsourcing Contr | Waiting on Aaron Jay | ~stale since 4/18. |
+| 8 | Richard Speere | Structure - Contract Sr CRA | References | ~stale since 4/17. |
+| 9 | Michael Pelayo | Structure - Contract Sr CRA | References | ~stale since 4/17. |
+
+**Placed / Onboarding:** Tony Tang (Karyopharm 4/8), Arpita Rathod (IDEAYA 4/6), Zequn Tang (Karyopharm #40705), Bhargavi Setty (IDEAYA 4/20, 18-mo contract), Tauqeer Karim (Pathalys ongoing).
+
+**New intake (pre-submission):** Chris Galloway (CVs received, Bryan reviewing), Guanying Wang (intake notes sent 4/14, awaiting CV).
+
+### Friday 5/8 Priorities
+
+1. Aaron Jay reply on Kristi O'Rorke counter (sent 2x 5/7).
+2. Diem Huynh @ Actium — momentum with Kevin Lee.
+
+### Active TODO
+
+- [ ] **Wire `eod-sweep` / `pipeline-sync` to write §9 automatically** — highest-leverage infra fix.
+- [ ] **Reconnect Notion MCP at server level** — tonight's API workaround should be permanent.
+- [ ] **Notion duplicate cleanup** — 22 dupe Kristi O'Rorke "New Lead" rows + 1 dupe Bhargavi Setty "Placed" row.
+- [ ] **.git audit** — 2.3 GB .git folder syncs via OneDrive. IT GPO blocks registry-based ignore-list. Junction-replacement tested but deferred. File IT ticket; consider moving repo out of OneDrive.
+- [ ] **Personal OneDrive → Google Drive migration in flight** — started 5/7 via rclone, target `gdrive:/OneDrive-Migration-2026-05-07/`. After `rclone check`, quarantine + delete from Personal OneDrive: Imports (43 GB), Downloads (8 GB), Downloads-Copy (3 GB), OneDrive - Green Key Resources (0.1 GB). Frees ~54 GB cloud quota.
+- [ ] Graph API → Make.com EOD sweep: build scenario. OAuth is the only new piece.
+- [ ] Deploy program.md to Obsidian vault (replacing 8 separate files).
+- [ ] Voice dump → Make.com webhook → Notion intake pipeline.
+- [ ] GQR machine RAM upgrade ($150).
+- [ ] Activate Codex signal automation stack.
+- [ ] Build RecruitRx drafting skill.
+- [ ] Content pipeline consolidation (reduce tool chain).
+
+**Dropped 5/7 (Bryan flagged irrelevant):** Nicole PFS/Bus Dev deliverables; Korro Bio Director CDM verification; Puma Biotech terms inquiry follow-up.
+
+---
+
+## VERSION NOTES
+
+This file replaces: USER.md, TOOLS.md, SOUL.md, IDENTITY.md, AGENTS.md, HEARTBEAT.md, MEMORY.md (operational content only).
+
+**V1.1 (2026-03-21):** Section 9 refreshed from Friday 3/20 Active Pipeline Snapshot (Notion), Tuesday 3/17 Structure recruiting update, Monday 3/16 team meeting notes, Google Drive pipeline-summary.md, and web intelligence on active accounts. Korro Bio reactivated. IDEAYA placement (Arpita Rathod) added. Candidate priority table and Monday 3/23 priorities added. Active TODO expanded with infrastructure backlog items from earlier conversation.
+
+**What moved where:**
+- Automation run logs (former MEMORY.md) → not carried forward. These are debug artifacts, not operational context. Session notes still go to `/memory/YYYY-MM-DD.md` files.
+- Periodic checklists (former HEARTBEAT.md) → collapsed into the skills that trigger them (EOD sweep skill, pipeline-sync skill, Nicole weekly skill). Checklists that don't execute automatically aren't infrastructure — they're intentions.
+- Agent personality (former SOUL.md) → absorbed into Section 2 operating rules and Section 3 voice DNA. Separate personality file was redundant with behavioral rules.
+- Agent identity (former IDENTITY.md) → first line of Section 1. Five lines didn't need their own file.
+- Boot sequence (former AGENTS.md) → eliminated. A 7-file sequential read is the maintenance burden this file solves. One file loads; everything is here.
+
+**What stays separate:**
+- `/memory/YYYY-MM-DD.md` session logs — daily notes written during Claude Code sessions
+- `/config/*.json` files — database IDs, scenario IDs, API configurations
+- `/skills/*.md` files — task-specific execution instructions (EOD sweep, rapid source, candidate submission, etc.)
+- TODO.md — if you prefer keeping a standalone task file, keep it. But Section 9 carries the active items.

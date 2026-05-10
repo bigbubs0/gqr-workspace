@@ -23,6 +23,11 @@ __pycache__/
 .venv/
 venv/
 
+# ===== LOCAL APP DATA =====
+recruiter-tool/data/*.db
+recruiter-tool/data/uploads/
+recruiter-tool/telemetry/
+
 # ===== NODE =====
 node_modules/
 package-lock.json

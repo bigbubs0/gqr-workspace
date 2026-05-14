@@ -10,6 +10,10 @@ bryan/
 *.env
 .env.example
 
+# ===== RECRUITER TOOL RUNTIME DATA / PII =====
+recruiter-tool/data/
+recruiter-tool/telemetry/
+
 # ===== OS / EDITOR JUNK =====
 .DS_Store
 Thumbs.db

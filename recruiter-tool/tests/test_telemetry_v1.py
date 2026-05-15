@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib
+import io
 import json
 import os
 import sys
@@ -252,6 +253,62 @@ class TelemetryV1Tests(unittest.TestCase):
         self.assertIn("X-Pipeline-Run-Id", response.headers)
         summaries = self._telemetry_lines("run-summaries.ndjson")
         self.assertTrue(any(summary["route"] == "/api/search" for summary in summaries))
+
+    def test_uploading_duplicate_attachment_names_preserves_each_file(self):
+        candidate_id = self.database.save_candidate({"name": "Jane Doe"})
+
+        first_response = self.client.post(
+            f"/api/candidate/{candidate_id}/upload",
+            data={"file": (io.BytesIO(b"first cv"), "cv.pdf"), "description": "First CV"},
+            content_type="multipart/form-data",
+        )
+        second_response = self.client.post(
+            f"/api/candidate/{candidate_id}/upload",
+            data={"file": (io.BytesIO(b"second cv"), "cv.pdf"), "description": "Second CV"},
+            content_type="multipart/form-data",
+        )
+
+        self.assertEqual(first_response.status_code, 200)
+        self.assertEqual(second_response.status_code, 200)
+
+        conn = self.database.sqlite3.connect(self.database.DB_PATH)
+        rows = conn.execute(
+            "SELECT file_path FROM attachments WHERE candidate_id = ? ORDER BY id",
+            (candidate_id,),
+        ).fetchall()
+        conn.close()
+
+        file_paths = [Path(row[0]) for row in rows]
+        self.assertEqual(len(file_paths), 2)
+        self.assertNotEqual(file_paths[0], file_paths[1])
+        self.assertEqual(file_paths[0].read_bytes(), b"first cv")
+        self.assertEqual(file_paths[1].read_bytes(), b"second cv")
+
+    def test_deleting_one_attachment_keeps_file_referenced_by_another_row(self):
+        candidate_id = self.database.save_candidate({"name": "Jane Doe"})
+        shared_path = self.temp_dir / "uploads" / str(candidate_id) / "cv.pdf"
+        shared_path.parent.mkdir(parents=True, exist_ok=True)
+        shared_path.write_bytes(b"shared cv")
+
+        conn = self.database.sqlite3.connect(self.database.DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute(
+            "INSERT INTO attachments (candidate_id, file_name, file_type, file_path, description) VALUES (?, ?, ?, ?, ?)",
+            (candidate_id, "cv.pdf", "pdf", str(shared_path), "First row"),
+        )
+        first_attachment_id = cursor.lastrowid
+        cursor.execute(
+            "INSERT INTO attachments (candidate_id, file_name, file_type, file_path, description) VALUES (?, ?, ?, ?, ?)",
+            (candidate_id, "cv.pdf", "pdf", str(shared_path), "Second row"),
+        )
+        conn.commit()
+        conn.close()
+
+        response = self.client.delete(f"/api/attachment/{first_attachment_id}")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(shared_path.exists())
+        self.assertEqual(shared_path.read_bytes(), b"shared cv")
 
     def test_concurrent_span_writes_remain_valid_ndjson(self):
         def worker(index: int) -> None:

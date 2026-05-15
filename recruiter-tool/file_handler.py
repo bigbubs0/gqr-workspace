@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import shutil
+import uuid
 from werkzeug.utils import secure_filename
 from database import DB_PATH
 
@@ -31,7 +32,8 @@ def save_attachment(candidate_id, file, description=''):
 
     # Secure the filename
     filename = secure_filename(file.filename)
-    file_path = os.path.join(candidate_folder, filename)
+    stored_filename = f"{uuid.uuid4().hex}_{filename}"
+    file_path = os.path.join(candidate_folder, stored_filename)
 
     # Save the file
     file.save(file_path)
@@ -85,10 +87,12 @@ def delete_attachment(attachment_id):
         file_path = row[0]
         # Delete from database
         cursor.execute('DELETE FROM attachments WHERE id = ?', (attachment_id,))
+        cursor.execute('SELECT 1 FROM attachments WHERE file_path = ? LIMIT 1', (file_path,))
+        file_still_referenced = cursor.fetchone() is not None
         conn.commit()
 
-        # Delete physical file
-        if os.path.exists(file_path):
+        # Delete the physical file only after the last database reference is gone.
+        if not file_still_referenced and os.path.exists(file_path):
             os.remove(file_path)
 
     conn.close()

@@ -54,10 +54,13 @@ def _append_ndjson(filename: str, payload: dict) -> None:
     if not telemetry_enabled():
         return
 
-    path = _file_path(filename)
-    with _LOCK, path.open("a", encoding="utf-8") as handle:
-        handle.write(json.dumps(payload, ensure_ascii=True, separators=(",", ":"), default=_json_default))
-        handle.write("\n")
+    try:
+        path = _file_path(filename)
+        with _LOCK, path.open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps(payload, ensure_ascii=True, separators=(",", ":"), default=_json_default))
+            handle.write("\n")
+    except (OSError, TypeError, ValueError):
+        return
 
 
 def new_pipeline_run_id() -> str:
@@ -209,7 +212,10 @@ def span(
             record.set_error(exc)
         raise
     finally:
-        record.finalize()
+        try:
+            record.finalize()
+        except Exception:
+            pass
 
 
 def write_run_summary(payload: dict) -> None:

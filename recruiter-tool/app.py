@@ -103,7 +103,10 @@ def instrument_route(name: str):
                     **getattr(g, "run_attrs", {}),
                     **getattr(g, "run_metrics", {}),
                 }
-                write_run_summary(summary)
+                try:
+                    write_run_summary(summary)
+                except Exception:
+                    pass
 
                 response.headers["X-Pipeline-Run-Id"] = pipeline_run_id
                 return response

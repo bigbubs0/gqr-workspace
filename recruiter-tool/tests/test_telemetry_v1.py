@@ -189,6 +189,62 @@ class TelemetryV1Tests(unittest.TestCase):
         telemetry_blob = (self.temp_dir / "telemetry" / "custom-spans.ndjson").read_text(encoding="utf-8")
         self.assertNotIn(transcript, telemetry_blob)
 
+    def test_process_route_returns_success_when_run_summary_write_fails_after_db_save(self):
+        payload = {
+            "name": "Jane Doe",
+            "current_company": "Acme Bio",
+            "current_title": "Director",
+            "years_experience_total": 12,
+            "years_experience_therapeutic": 8,
+            "technical_skills": ["Phase 2"],
+            "compensation_current_min": 200,
+            "compensation_current_max": 220,
+            "compensation_target_min": 240,
+            "compensation_target_max": 260,
+            "notice_period": "2 weeks",
+            "location": "Boston, MA",
+            "open_to_relocation": False,
+            "red_flags": "",
+            "why_interesting": "Strong fit.",
+            "therapeutic_areas": ["oncology"],
+            "phase_experience": ["Phase 2", "Phase 3"],
+        }
+        self.ai_processor.get_client = lambda: FakeClient([FakeResponse(payload)])
+
+        def fail_summary_write(_summary):
+            raise OSError("telemetry volume is full")
+
+        self.app_module.write_run_summary = fail_summary_write
+
+        response = self.client.post(
+            "/api/process",
+            json={"transcript": "Jane Doe currently works at Acme Bio.", "search_tags": []},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        saved_candidates = self.database.search_candidates({})
+        self.assertEqual(len(saved_candidates), 1)
+        self.assertEqual(saved_candidates[0]["name"], "Jane Doe")
+
+    def test_span_finalize_telemetry_write_failures_do_not_escape_caller(self):
+        def fail_append(_filename, _payload):
+            raise OSError("telemetry volume is full")
+
+        self.telemetry._append_ndjson = fail_append
+
+        with self.telemetry.span("test.best_effort", "test", "run_best_effort"):
+            pass
+
+    def test_span_finalize_telemetry_write_failures_do_not_suppress_body_errors(self):
+        def fail_append(_filename, _payload):
+            raise OSError("telemetry volume is full")
+
+        self.telemetry._append_ndjson = fail_append
+
+        with self.assertRaises(RuntimeError):
+            with self.telemetry.span("test.body_failure", "test", "run_body_failure"):
+                raise RuntimeError("business logic failed")
+
     def test_validation_failure_returns_500_logs_schema_failure_and_skips_db_insert(self):
         invalid_payload = {
             "name": "",

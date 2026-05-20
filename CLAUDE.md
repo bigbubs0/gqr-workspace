@@ -383,7 +383,7 @@ _Last verified: 2026-03-20 (Friday pipeline snapshot from Notion)_
 - [ ] Verify Job Alerts Notion data source ID.
 - [ ] Activate Codex signal automation stack.
 - [ ] Build interview prep skill.
-- [ ] Build RecruitRx drafting skill.
+- [x] Build RecruitRx drafting skill. (skills/recruitrx-draft.md)
 - [ ] Content pipeline consolidation (reduce tool chain).
 
 ---
